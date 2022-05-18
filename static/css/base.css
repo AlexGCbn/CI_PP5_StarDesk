@@ -71,6 +71,15 @@ body {
     border: 1px solid black !important;
 }
 
+/* Custom products nav classes */
+.products-container {
+    justify-content: center !important;
+}
+
+.products-toggler {
+    border: none !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

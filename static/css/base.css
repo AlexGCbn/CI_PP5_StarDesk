@@ -13,8 +13,8 @@ html {
 body {
     background: url('/media/home-background.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vs - 164px);
-    color: #fff;
+    height: calc(100vs - 101px);
+    /* color: #fff; */
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -92,6 +92,28 @@ body {
     word-wrap: normal;
 }
 
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #fff;
+    z-index: -1;
+}
+
+.product-card {
+    flex-direction: row !important;
+}
+
+.product-img-container {
+    height: 175px;
+}
+
+.product-img {
+    max-height: 100%;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -112,6 +134,10 @@ body {
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 101px;
+    }
+
+    .product-img-container {
+        height: 250px;
     }
 }

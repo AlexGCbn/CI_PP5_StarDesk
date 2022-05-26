@@ -8,13 +8,28 @@ class AllProductsView(View):
 
     def get(self, request):
         """ A view to return index page """
-        query_case = Case.objects.all()
-        query_mobo = Motherboard.objects.all()
-        query_cpu = Cpu.objects.all()
-        query_gpu = Gpu.objects.all()
-        query_ram = Ram.objects.all()
-        query_psu = Psu.objects.all()
-        query_storage = Storage.objects.all()
+        # values_list info from here https://books.agiliq.com/projects/django-orm-cookbook/en/latest/union.html
+        query_case = Case.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_mobo = Motherboard.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_cpu = Cpu.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_gpu = Gpu.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_ram = Ram.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_psu = Psu.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
+        query_storage = Storage.objects.all().values_list(
+            'model', 'manufacturer', 'price', 'rating'
+        )
         products = query_case.union(
             query_mobo,
             query_cpu,

@@ -10,30 +10,29 @@ class AllProductsView(View):
         """ A view to return index page """
         # values info from here https://books.agiliq.com/projects/django-orm-cookbook/en/latest/union.html
         query_case = Case.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         query_mobo = Motherboard.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         query_cpu = Cpu.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
-        # query_cpu = Cpu.objects.all()
         query_gpu = Gpu.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         query_ram = Ram.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         query_psu = Psu.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         query_storage = Storage.objects.all().only(
-            'model', 'manufacturer', 'price', 'rating', 'image'
+            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
         )
         products = query_case.union(
             query_mobo,
-            # query_cpu,
+            query_cpu,
             query_gpu,
             query_ram,
             query_psu,
@@ -41,7 +40,33 @@ class AllProductsView(View):
         )
         template = 'products/products.html'
         context = {
-            'products': products,
-            'cpus': query_cpu
+            'products': products
+        }
+        return render(request, template, context)
+
+
+class ProductDetails(View):
+    """ Displays product details """
+
+    def get(self, request, id, category):
+        """ GET request for product details page """
+        if category == 'case':
+            product = Case.objects.get(id=id)
+        elif category == 'motherboard':
+            product = Motherboard.objects.get(id=id)
+        elif category == 'cpu':
+            product = Cpu.objects.get(id=id)
+        elif category == 'gpu':
+            product = Gpu.objects.get(id=id)
+        elif category == 'ram':
+            product = Ram.objects.get(id=id)
+        elif category == 'psu':
+            product = Psu.objects.get(id=id)
+        elif category == 'storage':
+            product = Storage.objects.get(id=id)
+
+        template = 'products/product_details.html'
+        context = {
+            'product': product
         }
         return render(request, template, context)

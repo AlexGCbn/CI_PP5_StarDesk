@@ -47,6 +47,7 @@ class Case(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     mobo_sizes = models.CharField(choices=MOBO_SIZES, max_length=254)
+    category = models.CharField(default='case', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -63,6 +64,7 @@ class Motherboard(models.Model):
     size = models.CharField(choices=MOBO_SIZES, max_length=254)
     socket = models.CharField(choices=CPU_SOCKETS, max_length=254)
     ram_type = models.CharField(choices=RAM_TYPES, max_length=254)
+    category = models.CharField(default='motherboard', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -78,6 +80,7 @@ class Cpu(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     socket = models.CharField(choices=CPU_SOCKETS, max_length=254)
     core_count = models.IntegerField()
+    category = models.CharField(default='cpu', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -93,6 +96,7 @@ class Gpu(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     speed = models.IntegerField()
     memory_capacity = models.IntegerField()
+    category = models.CharField(default='gpu', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -109,6 +113,7 @@ class Ram(models.Model):
     speed = models.IntegerField()
     capacity = models.IntegerField()
     type = models.CharField(choices=RAM_TYPES, max_length=254)
+    category = models.CharField(default='ram', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -124,6 +129,7 @@ class Psu(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     wattage = models.IntegerField()
     category = models.CharField(choices=PSU_CATEGORIES, max_length=254)
+    category = models.CharField(default='psu', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
@@ -139,6 +145,7 @@ class Storage(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     capacity = models.IntegerField()
     speed = models.IntegerField()
+    category = models.CharField(default='storage', max_length=20, editable=False)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'

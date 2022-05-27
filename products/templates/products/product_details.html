@@ -21,29 +21,21 @@
     </div>
     <div class="row">
         <div class="product-container col-10 offset-1">
-            {% for product in products %}
             <div class="row d-flex justify-content-center">
                 <div class="col col-md-9 col-lg-7">
                     <div class="card product-card m-2">
                         <div
                             class="col-5 col-md-4 col-lg-4 product-img-container d-flex align-items-center justify-content-center">
                             {% if product.image %}
-                            <a href="{% url 'product_details' product.category product.id %}">
-                                <img src="{{ product.image.url }}" class="product-img p-1 img-fluid"
-                                    alt="{{ product.manufacturer }} {{ product.model }}">
-                            </a>
+                            <img src="{{ product.image.url }}" class="product-img p-1 img-fluid"
+                                alt="{{ product.manufacturer }} {{ product.model }}">
                             {% else %}
-                            <a href="{% url 'product_details' product.category product.id %}">
-                                <img src="{{ MEDIA_URL }}no-image.png" class="product-img p-1 img-fluid"
-                                    alt="{{ product.manufacturer }} {{ product.model }}">
-                            </a>
+                            <img src="{{ MEDIA_URL }}no-image.png" class="product-img p-1 img-fluid"
+                                alt="{{ product.manufacturer }} {{ product.model }}">
                             {% endif %}
                         </div>
                         <div class="card-body col-7 col-md-8 col-lg-7">
-                            <h5 class="card-title">
-                                <a href="{% url 'product_details' product.category product.id %}" class="logo-link">
-                                    {{ product.manufacturer }} {{ product.model }}</a>
-                            </h5>
+                            <h5 class="card-title">{{ product.manufacturer }} {{ product.model }}</h5>
                             <p class="font-weight-bold">{{ product.price }} €</p>
                             {% if product.rating %}
                             <small class="text-muted"><i class="fa-solid fa-star-sharp"></i>{{ product.rating }}</small>
@@ -54,7 +46,6 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>

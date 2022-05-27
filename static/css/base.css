@@ -146,3 +146,13 @@ body {
         height: 250px;
     }
 }
+
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 64px;
+    }
+
+    body {
+        height: calc(100vh - 64px);
+    }
+}

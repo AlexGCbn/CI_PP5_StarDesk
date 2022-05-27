@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views import generic, View
+from django.views import View
 from .models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 
 
@@ -10,25 +10,32 @@ class AllProductsView(View):
         """ A view to return index page """
         # values info from here https://books.agiliq.com/projects/django-orm-cookbook/en/latest/union.html
         query_case = Case.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_mobo = Motherboard.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_cpu = Cpu.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_gpu = Gpu.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_ram = Ram.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_psu = Psu.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         query_storage = Storage.objects.all().only(
-            'id', 'model', 'manufacturer', 'price', 'rating', 'image', 'category'
+            'id', 'model', 'manufacturer',
+            'price', 'rating', 'image', 'category'
         )
         products = query_case.union(
             query_mobo,

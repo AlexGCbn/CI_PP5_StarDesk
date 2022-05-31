@@ -11,6 +11,11 @@ class AllProductsView(View):
     def get(self, request):
         """ A view to return index page """
 
+        # Category listing
+        category = None
+        if 'category' in request.GET:
+            category = request.GET['category']
+
         # Search query
         query = None
         queries = None
@@ -24,75 +29,112 @@ class AllProductsView(View):
                 Q(manufacturer__icontains=query) |
                 Q(description__icontains=query)
             )
-            # products = products.filter(queries)
-            
-        if queries:
-            query_case = Case.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_mobo = Motherboard.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_cpu = Cpu.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_gpu = Gpu.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_ram = Ram.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_psu = Psu.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_storage = Storage.objects.filter(queries).only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
+        # If category exists, query by it
+        if category:
+            if category == 'case':
+                products = Case.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'motherboard':
+                products = Motherboard.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'cpu':
+                products = Cpu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'gpu':
+                products = Gpu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'ram':
+                products = Ram.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'psu':
+                products = Psu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            elif category == 'storage':
+                products = Storage.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
         else:
-            query_case = Case.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
+            # If queries exist (search), query by it
+            if queries:
+                query_case = Case.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_mobo = Motherboard.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_cpu = Cpu.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_gpu = Gpu.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_ram = Ram.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_psu = Psu.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_storage = Storage.objects.filter(queries).only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            # Get all products
+            else:
+                query_case = Case.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_mobo = Motherboard.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_cpu = Cpu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_gpu = Gpu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_ram = Ram.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_psu = Psu.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+                query_storage = Storage.objects.all().only(
+                    'id', 'model', 'manufacturer',
+                    'price', 'rating', 'image', 'category'
+                )
+            products = query_case.union(
+                query_mobo,
+                query_cpu,
+                query_gpu,
+                query_ram,
+                query_psu,
+                query_storage
             )
-            query_mobo = Motherboard.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_cpu = Cpu.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_gpu = Gpu.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_ram = Ram.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_psu = Psu.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-            query_storage = Storage.objects.all().only(
-                'id', 'model', 'manufacturer',
-                'price', 'rating', 'image', 'category'
-            )
-
-        products = query_case.union(
-            query_mobo,
-            query_cpu,
-            query_gpu,
-            query_ram,
-            query_psu,
-            query_storage
-        )
 
         template = 'products/products.html'
         context = {

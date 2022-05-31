@@ -140,21 +140,23 @@ class AllProductsView(View):
         # Sorting
         sort = None
         direction = None
+        current_sorting = "None_None"
         if 'sort' in request.GET:
             sort = request.GET['sort']
+            sortkey = sort
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sort = f'-{sort}'
             products = products.order_by(sort)
-
-        current_sorting = f'{sort}_{direction}'
+            current_sorting = f'{sortkey}_{direction}'
 
         template = 'products/products.html'
         context = {
             'products': products,
             'search_term': query,
             'current_sorting': current_sorting,
+            'category': category,
         }
         return render(request, template, context)
 

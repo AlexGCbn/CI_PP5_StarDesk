@@ -34,6 +34,12 @@
             <div class="product-details-container mb-5 mt-md-5">
                 <p class="mb-0">{{ product.manufacturer }} {{ product.model }}</p>
                 <p class="lead mb-0 text-left font-weight-bold">{{ product.price }} €</p>
+                <p class="small mt-1 mb-0">
+                    <a href="{% url 'products' %}?category={{ product.category }}" class="text-muted text-decoration-none">
+                        <i class="fa-solid fa-tags"></i>
+                        {{ product.category|capfirst }}
+                    </a>
+                </p>
                 {% if product.rating %}
                 <small class="text-muted"><i class="fa-solid fa-star-sharp"></i>{{ product.rating }}</small>
                 {% else %}

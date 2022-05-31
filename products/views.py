@@ -29,6 +29,7 @@ class AllProductsView(View):
                 Q(manufacturer__icontains=query) |
                 Q(description__icontains=query)
             )
+
         # If category exists, query by it
         if category:
             if category == 'case':
@@ -136,10 +137,24 @@ class AllProductsView(View):
                 query_storage
             )
 
+        # Sorting
+        sort = None
+        direction = None
+        if 'sort' in request.GET:
+            sort = request.GET['sort']
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sort = f'-{sort}'
+            products = products.order_by(sort)
+
+        current_sorting = f'{sort}_{direction}'
+
         template = 'products/products.html'
         context = {
             'products': products,
             'search_term': query,
+            'current_sorting': current_sorting,
         }
         return render(request, template, context)
 

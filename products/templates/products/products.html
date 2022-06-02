@@ -28,9 +28,9 @@
         <div class="product-container col-10 offset-1">
             <div class="row mt-1 mb-2 justify-content-center">
                 <div class="col-12 col-md-4 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="sort-select-wrapper w-50">
+                    <div class="form-select-wrapper w-50">
                         <select id="sort-selector"
-                            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            class="form-select form-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
                             </option>
                             <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
@@ -47,12 +47,11 @@
                             </option>
                         </select>
                     </div>
-                    {{ current_sorting }}
                 </div>
                 <div class="col-12 col-md-4 order-md-first">
                     <p class="text-muted mt-3 text-center text-md-left">
                         <span class="small"><a href="{% url 'products' %}" class="text-decoration-none">
-                            <i class="fa-solid fa-house"></i></a> | </span>
+                                <i class="fa-solid fa-house"></i></a> | </span>
                         {{ products|length }} Products{% if search_term %} found for
                         <strong>"{{ search_term }}"</strong>{% endif %}
                     </p>
@@ -108,5 +107,20 @@
         </div>
     </div>
 </div>
+<div class="row w-100">
+    <div class="col go-top-button text-center p-0 m-0">
+        <a href="" class="go-top-link text-black d-flex h-100 justify-content-center">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}
 
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.go-top-link').click(function(e) {
+        window.ScrollTo(0,0)
+    });
+</script>
 {% endblock %}

@@ -186,3 +186,20 @@ class ProductDetails(View):
             'product': product
         }
         return render(request, template, context)
+
+    def post(self, request, id, category):
+        """ POST request for adding items to Bag """
+
+        quantity = int(request.POST.get('quantity'))
+        redirect_url = request.POST.get('redirect_url')
+        bag = request.session.get('bag', {})
+
+        item = category + str(id)
+        if item in list(bag.keys()):
+            bag[item] += quantity
+        else:
+            bag[item] = quantity
+
+        request.session['bag'] = bag
+        print(request.session['bag'])
+        return redirect(redirect_url)

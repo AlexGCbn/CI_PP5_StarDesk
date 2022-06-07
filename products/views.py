@@ -194,7 +194,7 @@ class ProductDetails(View):
         redirect_url = request.POST.get('redirect_url')
         bag = request.session.get('bag', {})
 
-        item = category + str(id)
+        item = category + '_' + str(id)
         if item in list(bag.keys()):
             bag[item] += quantity
         else:

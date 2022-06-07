@@ -59,7 +59,9 @@
                                         <button class="decrement-qty btn btn-dark rounded-0"
                                             data-item_id="{{ product.category }}{{ product.id }}"
                                             id="decrement-qty_{{ product.category }}{{ product.id }}">
-                                            <i class="fa-solid fa-circle-minus"></i>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-circle-minus"></i>
+                                            </span>
                                         </button>
                                     </div>
                                     <input type="number" class="form-control qty_input" name="quantity" value="1"
@@ -69,7 +71,9 @@
                                         <button class="increment-qty btn btn-dark rounded-0"
                                             data-item_id="{{ product.category }}{{ product.id }}"
                                             id="increment-qty_{{ product.category }}{{ product.id }}">
-                                            <i class="fa-solid fa-circle-plus"></i>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-circle-plus"></i>
+                                            </span>
                                         </button>
                                     </div>
                                 </div>

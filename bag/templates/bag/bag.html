@@ -74,8 +74,32 @@
                                     </div>
                                 </div>
                             </form>
-                            <a href="" class="update-link text-success text-decoration-none"><small>Update</small></a>
-                            <a href="" class="remove-item text-danger float-end text-decoration-none" id="remove_{{ item.product.category }}{{ item.item_id }}"><small>Remove</small></a>
+                            <!-- Update quantity form -->
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="item" value="{{ item.product.category }}{{ item.item_id }}">
+                                <input type="hidden" name="operation" value="update">
+                                <input type="hidden" name="value" value=""
+                                    data-item_id="{{ item.product.category }}{{ item.item_id }}"
+                                    class="hidden_qty_input"
+                                    id="hidden-item-qty_{{ item.product.category }}{{ item.item_id }}">
+                                <button type="submit"
+                                    class="update-link text-success text-decoration-none"><small>Update</small></a></button>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                <input type="hidden" name="product_pass"
+                                    value="{{ item.product.category }}_{{ item.item_id }}">
+                            </form>
+                            <!-- Remove item form -->
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="item" value="{{ item.product.category }}{{ item.item_id }}">
+                                <input type="hidden" name="operation" value="remove">
+                                <button type="submit" class="remove-item text-danger float-end text-decoration-none"
+                                    id="remove_{{ item.product.category }}{{ item.item_id }}"><small>Remove</small></a></button>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                <input type="hidden" name="product_pass"
+                                    value="{{ item.product.category }}_{{ item.item_id }}">
+                            </form>
                         </td>
                         <td class="py-3">
                             <p class="my-0">{{ item.product.price }}€</p>
@@ -120,5 +144,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+{% include 'bag/includes/bag_quantity_input_script.html' %}
 {% endblock %}

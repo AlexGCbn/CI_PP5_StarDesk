@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    // Handle enabling/disabling of buttons
+    function handleButtons(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    var qtyInputs = $('.qty_input');
+    var hiddenQtyInputs = $('.hidden_qty_input')
+    $(function() {
+        // Check enable/disable on page load
+        for(var i = 0; i < qtyInputs.length; i++){
+            var itemId = $(qtyInputs[i]).data('item_id');
+            handleButtons(itemId);
+        }
+        // Set hidden item quantity on page load
+        for(var i=0; i < hiddenQtyInputs.length; i++){
+            hiddenQtyInputs[i].value = qtyInputs[i].value
+        }
+    });
+
+
+
+    // Check enable/disable on input change
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleButtons(itemId);
+        updateHiddenQty(itemId);
+    });
+
+    // Update hidden value for form POST
+    function updateHiddenQty(itemId) {
+        let newValue = parseInt($(`#id_qty_${itemId}`).val())
+        $(`#hidden-item-qty_${itemId}`).val(newValue)
+    }
+
+    // Increments quantity
+    $('.increment-qty').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue + 1);
+        var itemId = $(this).data('item_id');
+        var currentHiddenValue = parseInt($(`#hidden-item-qty_${itemId}`).val());
+        $(`#hidden-item-qty_${itemId}`).val(currentHiddenValue + 1)
+        handleButtons(itemId);
+    });
+
+    // Decrements quantity
+    $('.decrement-qty').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue - 1);
+        var itemId = $(this).data('item_id');
+        var currentHiddenValue = parseInt($(`#hidden-item-qty_${itemId}`).val());
+        $(`#hidden-item-qty_${itemId}`).val(currentHiddenValue - 1)
+        handleButtons(itemId);
+    });
+</script>

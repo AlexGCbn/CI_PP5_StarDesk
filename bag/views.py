@@ -19,7 +19,11 @@ class BagView(View):
 
         if request.POST.get('operation') == 'update':
             quantity = int(request.POST.get('value'))
-            bag[item] = quantity
+            if quantity >= 1 and quantity <= 99:
+                bag[item] = quantity
+            else:
+                # Add error message here
+                return redirect(reverse('view_bag'))
         elif request.POST.get('operation') == 'remove':
             del bag[item]
 

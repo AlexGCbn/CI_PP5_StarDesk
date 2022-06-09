@@ -194,12 +194,12 @@ class ProductDetails(View):
         redirect_url = request.POST.get('redirect_url')
         bag = request.session.get('bag', {})
 
-        item = category + '_' + str(id)
-        if item in list(bag.keys()):
-            bag[item] += quantity
-        else:
-            bag[item] = quantity
+        if quantity >= 1 and quantity <= 99:
+            item = category + '_' + str(id)
+            if item in list(bag.keys()):
+                bag[item] += quantity
+            else:
+                bag[item] = quantity
 
         request.session['bag'] = bag
-        print(request.session['bag'])
         return redirect(redirect_url)

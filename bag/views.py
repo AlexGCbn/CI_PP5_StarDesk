@@ -23,7 +23,8 @@ class BagView(View):
         if request.POST.get('operation') == 'update':
             quantity = int(request.POST.get('value'))
             bag[item] = quantity
-
+        elif request.POST.get('operation') == 'remove':
+            del bag[item]
 
         request.session['bag'] = bag
         return redirect(redirect_url)

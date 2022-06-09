@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views import View
 
 
@@ -11,11 +11,9 @@ class BagView(View):
         template = 'bag/bag.html'
         return render(request, template)
 
-    # Temporary
     def post(self, request):
         """ POST request for updating/removing Bag items """
         
-        redirect_url = request.POST.get('redirect_url')
         bag = request.session.get('bag', {})
         item = request.POST.get('product_pass')
 
@@ -26,4 +24,4 @@ class BagView(View):
             del bag[item]
 
         request.session['bag'] = bag
-        return redirect(redirect_url)
+        return redirect(reverse('view_bag'))

@@ -87,6 +87,7 @@
                                 value="Add to bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <input type="hidden" name="product_friendly_name" value="{{ product.manufacturer }} {{ product.model }}">
                     </div>
                 </form>
             </div>

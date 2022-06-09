@@ -201,5 +201,7 @@ class ProductDetails(View):
             else:
                 bag[item] = quantity
 
+        product_name = request.POST.get('product_friendly_name')
         request.session['bag'] = bag
+        messages.success(request, f'Added {quantity}x {product_name} to your bag.')
         return redirect(redirect_url)

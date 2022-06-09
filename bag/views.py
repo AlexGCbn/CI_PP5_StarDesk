@@ -14,7 +14,6 @@ class BagView(View):
     # Temporary
     def post(self, request):
         """ POST request for updating/removing Bag items """
-
         
         redirect_url = request.POST.get('redirect_url')
         bag = request.session.get('bag', {})

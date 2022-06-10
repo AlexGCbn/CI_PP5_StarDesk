@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 from django.views import View
 
 
@@ -22,7 +23,7 @@ class BagView(View):
             if quantity >= 1 and quantity <= 99:
                 bag[item] = quantity
             else:
-                # Add error message here
+                messages.error(request, 'Quantity needs to be between 1 and 99!')
                 return redirect(reverse('view_bag'))
         elif request.POST.get('operation') == 'remove':
             del bag[item]

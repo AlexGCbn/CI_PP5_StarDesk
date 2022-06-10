@@ -93,6 +93,8 @@
                                         </button>
                                         <input type="hidden" name="product_pass"
                                             value="{{ item.product.category }}_{{ item.item_id }}">
+                                        <input type="hidden" name="product_friendly_name"
+                                            value="{{ product.manufacturer }} {{ product.model }}">
                                     </form>
                                 </div>
                                 <!-- Remove item form -->
@@ -109,6 +111,8 @@
                                         </button>
                                         <input type="hidden" name="product_pass"
                                             value="{{ item.product.category }}_{{ item.item_id }}">
+                                        <input type="hidden" name="product_friendly_name"
+                                            value="{{ product.manufacturer }} {{ product.model }}">
                                     </form>
                                 </div>
                             </div>

@@ -22,11 +22,13 @@ class BagView(View):
             quantity = int(request.POST.get('value'))
             if quantity >= 1 and quantity <= 99:
                 bag[item] = quantity
+                messages.success(request, 'Item quantity updated successfully.')
             else:
                 messages.error(request, 'Quantity needs to be between 1 and 99!')
                 return redirect(reverse('view_bag'))
         elif request.POST.get('operation') == 'remove':
             del bag[item]
+            messages.success(request, "Item removed successfully.")
 
         request.session['bag'] = bag
         return redirect(reverse('view_bag'))

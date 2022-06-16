@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-{{ load bag_tools }}
+{% load bag_tools %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
 
 {% block page_header %}
 
@@ -27,16 +31,13 @@
     <div class="row">
         <!-- Left side column -->
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Please fill out the checkout form below:</p>
+            <h3 class="logo-font">Please fill out the checkout form below:</h3>
             <form action="" method="POST" id="payment-form">
                 {% csrf_token %}
                 <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-white p-2 w-auto">Details</legend>
+                    <legend class="fieldset-label small text-dark p-2 w-auto">Shipping details:</legend>
                     {{ order_form.full_name | as_crispy_field }}
                     {{ order_form.email | as_crispy_field }}
-                </fieldset>
-                <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-white p-2 w-auto">Details</legend>
                     {{ order_form.phone_number | as_crispy_field }}
                     {{ order_form.country | as_crispy_field }}
                     {{ order_form.city | as_crispy_field }}
@@ -45,8 +46,8 @@
                     {{ order_form.street_address2 | as_crispy_field }}
                     <!-- Add profile save info code here -->
                 </fieldset>
-                <fieldset class="mb-5">
-                    <legend class="fieldset-label small text-white p-2 w-auto">Details</legend>
+                <fieldset class="mb-5 px-3">
+                    <legend class="fieldset-label small text-dark p-2 w-auto">Payment</legend>
                     <div class="mb-3" id="card-element"></div>
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                 </fieldset>
@@ -71,6 +72,7 @@
         </div>
         <!-- Right side column -->
         <div class="col-12 col-lg-6">
+            <h3 class="logo-font">Your order:</h3>
             <div class="row">
                 <div class="col-7 offset-2">
                     <p class="small text-muted">Item</p>
@@ -82,7 +84,7 @@
             {% for item in bag_items %}
             <div class="row">
                 <div class="col-2 mb-1">
-                    <a href="{% url 'product_detail' item.product.category item.product.id%}">
+                    <a href="{% url 'product_details' item.product.category item.product.id%}">
                         {% if item.product.image %}
                         <img src="{{ item.product.image.url }}" class="product-img p-1 img-fluid"
                             alt="{{ item.product.manufacturer }} {{ item.product.model }}">
@@ -94,7 +96,7 @@
                 </div>
                 <div class="col-7">
                     <p class=""><strong>{{ item.product.manufacturer }} {{ item.product.model }}</strong></p>
-                    <p class="text-muted">Qty: {{ item.quantity }}</p>
+                    <p class="text-muted">Quantity: {{ item.quantity }}</p>
                 </div>
                 <div class="col-3 text-right">
                     <p class="small text-muted">{{ item.product.price | calc_subtotal:item.quantity }}€</p>
@@ -102,7 +104,7 @@
             </div>
             {% endfor %}
             <hr class="m-0">
-            <div class="row text-white text-right">
+            <div class="row text-dark text-right">
                 <div class="col-7 offset-2">
                     <p>Order Total:</p>
                     <p>Delivery:</p>
@@ -118,4 +120,11 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

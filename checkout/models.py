@@ -22,7 +22,7 @@ class Order(models.Model):
 
     def _generate_order_number(self):
         """
-        Generate a random order number using UUID
+        Generate a random order number
         """
         return uuid.uuid4().hex.upper()
 
@@ -72,7 +72,7 @@ class OrderLineCase(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLineMotherboard(models.Model):
@@ -89,7 +89,7 @@ class OrderLineMotherboard(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLineCpu(models.Model):
@@ -106,7 +106,7 @@ class OrderLineCpu(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLineGpu(models.Model):
@@ -123,7 +123,7 @@ class OrderLineGpu(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLineRam(models.Model):
@@ -140,7 +140,7 @@ class OrderLineRam(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLinePsu(models.Model):
@@ -157,7 +157,7 @@ class OrderLinePsu(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
 class OrderLineStorage(models.Model):
@@ -174,4 +174,4 @@ class OrderLineStorage(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.name}'
+        return f'Order item {self.product.manufacturer} {self.product.model}'

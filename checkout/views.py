@@ -77,7 +77,6 @@ class CheckoutView(View):
         if order_form.is_valid():
             order = order_form.save()
             for item, quantity in bag.items():
-                print(bag.items())
                 try:
                     item_split = item.split('_')
                     item_cat = item_split[0]
@@ -167,8 +166,25 @@ class CheckoutSuccessView(View):
         """
         save_info = request.session.get('save_info')
         order = get_object_or_404(Order, order_number = order_number)
+        product_list = []
+
+        for item in (
+            order.lineitem_case,
+            order.lineitem_mobo,
+            order.lineitem_cpu,
+            order.lineitem_gpu,
+            order.lineitem_ram,
+            order.lineitem_psu,
+            order.lineitem_storage):
+            try:
+                item_object = item.get()
+                product_list.append(item_object)
+            except:
+                continue
+        print(product_list)
         context = {
             'order': order,
+            'product_list': product_list,
         }
 
         return render(request, self.template, context)

@@ -12,7 +12,7 @@ class Order(models.Model):
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
-    postcode = models.CharField(max_length=20, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=False, blank=False)
     city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -33,13 +33,13 @@ class Order(models.Model):
         accounting for delivery costs.
         """
         self.order_total = (
-            self.lineitem_case.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_mobo.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_cpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_gpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_ram.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_psu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0 +
-            self.lineitem_storage.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+            (self.lineitem_case.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_mobo.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_cpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_gpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_ram.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_psu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_storage.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0)
         )
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100

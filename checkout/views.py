@@ -13,18 +13,9 @@ class CheckoutView(View):
     """
     Checkout class view
     """
-    bag = request.session.get('bag', {})
-    current_bag = bag_contents(request)
-    total = current_bag['grand_total']
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe.api_key = stripe_secret_key
-    stripe_total = round(total * 100)
-
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
 
     order_form = OrderForm()
     template = 'checkout/checkout.html'
@@ -33,6 +24,15 @@ class CheckoutView(View):
         """
         GET request view for checkout
         """
+        bag = request.session.get('bag', {})
+        current_bag = bag_contents(request)
+        total = current_bag['grand_total']
+        stripe_total = round(total * 100)
+
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
 
         if not self.stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. \
@@ -41,7 +41,7 @@ class CheckoutView(View):
         context = {
             'order_form': self.order_form,
             'stripe_public_key': self.stripe_public_key,
-            'client_secret': self.intent.client_secret,
+            'client_secret': intent.client_secret,
         }
 
         return render(request, self.template, context)
@@ -50,7 +50,17 @@ class CheckoutView(View):
         """
         Checkout POST functionality
         """
-        if not self.bag:
+        bag = request.session.get('bag', {})
+        current_bag = bag_contents(request)
+        total = current_bag['grand_total']
+        stripe_total = round(total * 100)
+
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
+
+        if not bag:
             messages.error(request, 'Nothing found in bag. Please add some items.')
             return redirect(reverse('products'))
         form_data = {
@@ -66,7 +76,8 @@ class CheckoutView(View):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
-            for item, quantity in self.bag.items():
+            for item, quantity in bag.items():
+                print(bag.items())
                 try:
                     item_split = item.split('_')
                     item_cat = item_split[0]
@@ -134,11 +145,11 @@ class CheckoutView(View):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-                request.session['save_info'] = 'save-info' in request.POST
-                messages.success(request, f'Your order was successfully processed! \
-                    Order number: {order.order_number}')
-                del request.session['bag']
-                return redirect(reverse('checkout_success', args=[order.order_number]))
+            request.session['save_info'] = 'save-info' in request.POST
+            messages.success(request, f'Your order was successfully processed! \
+                Order number: {order.order_number}')
+            del request.session['bag']
+            return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your order form. \
                 Please check your form again.')

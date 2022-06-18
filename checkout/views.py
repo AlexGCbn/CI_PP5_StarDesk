@@ -43,6 +43,9 @@ class CheckoutView(View):
         """
         GET request view for checkout
         """
+        stripe_public_key = settings.STRIPE_PUBLIC_KEY
+        stripe_secret_key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = stripe_secret_key
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
@@ -56,13 +59,13 @@ class CheckoutView(View):
             currency=settings.STRIPE_CURRENCY,
         )
         
-        if not self.stripe_public_key:
+        if not stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. \
                 Did you set it up in your environment?')
 
         context = {
             'order_form': self.order_form,
-            'stripe_public_key': self.stripe_public_key,
+            'stripe_public_key': stripe_public_key,
             'client_secret': intent.client_secret,
         }
 
@@ -72,6 +75,8 @@ class CheckoutView(View):
         """
         Checkout POST functionality
         """
+        stripe_secret_key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = stripe_secret_key
         bag = request.session.get('bag', {})
 
         form_data = {
@@ -86,7 +91,11 @@ class CheckoutView(View):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
             for item, quantity in bag.items():
                 try:
                     item_split = item.split('_')

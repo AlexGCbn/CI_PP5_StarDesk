@@ -1,4 +1,6 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404
+import json
+from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.views import View
 from django.contrib import messages
@@ -7,6 +9,23 @@ from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 from bag.contexts import bag_contents
 from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
 from .forms import OrderForm
+
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'There was a problem processing \
+            your payment. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 class CheckoutView(View):
@@ -25,6 +44,9 @@ class CheckoutView(View):
         GET request view for checkout
         """
         bag = request.session.get('bag', {})
+        if not bag:
+            messages.error(request, "There's nothing in your bag at the moment")
+            return redirect(reverse('products'))
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
@@ -33,7 +55,7 @@ class CheckoutView(View):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-
+        
         if not self.stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. \
                 Did you set it up in your environment?')
@@ -51,18 +73,7 @@ class CheckoutView(View):
         Checkout POST functionality
         """
         bag = request.session.get('bag', {})
-        current_bag = bag_contents(request)
-        total = current_bag['grand_total']
-        stripe_total = round(total * 100)
 
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
-
-        if not bag:
-            messages.error(request, 'Nothing found in bag. Please add some items.')
-            return redirect(reverse('products'))
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -145,9 +156,6 @@ class CheckoutView(View):
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            messages.success(request, f'Your order was successfully processed! \
-                Order number: {order.order_number}')
-            del request.session['bag']
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your order form. \
@@ -167,6 +175,10 @@ class CheckoutSuccessView(View):
         save_info = request.session.get('save_info')
         order = get_object_or_404(Order, order_number = order_number)
         product_list = []
+        messages.success(request, f'Your order was successfully processed! \
+            Order number: {order.order_number}')
+        if 'bag' in request.session:
+            del request.session['bag']
 
         for item in (
             order.lineitem_case,
@@ -181,7 +193,6 @@ class CheckoutSuccessView(View):
                 product_list.append(item_object)
             except:
                 continue
-        print(product_list)
         context = {
             'order': order,
             'product_list': product_list,

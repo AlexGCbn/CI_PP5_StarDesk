@@ -1,6 +1,11 @@
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
+from profiles.models import UserProfile
 from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
+
+import json
+import time
 
 
 class StripeWH_Handler:
@@ -34,6 +39,20 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+     
+        # Update profile information if save_info was checked
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.profile_phone_number = shipping_details.phone
+                profile.profile_country = shipping_details.address.country
+                profile.profile_postcode = shipping_details.address.postal_code
+                profile.profile_city = shipping_details.address.city
+                profile.profile_street_address1 = shipping_details.address.line1
+                profile.profile_street_address2 = shipping_details.address.line2
+                profile.save()
 
         order_exists = False
         attempt = 1
@@ -64,7 +83,9 @@ class StripeWH_Handler:
         else:
             order = None
             try:
+                order_user = User.objects.get(username=intent.metadata.username)
                 order = Order.objects.create(
+                    user=order_user,
                     full_name=shipping_details.name,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,

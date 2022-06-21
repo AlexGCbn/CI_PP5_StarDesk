@@ -7,10 +7,10 @@ from django.contrib import messages
 import stripe
 from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 from bag.contexts import bag_contents
-from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
-from .forms import OrderForm
 from profiles.forms import ProfileForm
 from profiles.models import UserProfile
+from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
+from .forms import OrderForm
 
 
 @require_POST

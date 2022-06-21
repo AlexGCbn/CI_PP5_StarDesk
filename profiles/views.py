@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.contrib import messages
 
 from .models import UserProfile
 from checkout.models import Order
@@ -25,3 +26,14 @@ class ProfileView(View):
             'orders': order_history,
         }
         return render(request, self.template, context)
+
+    def post(self, request, *args, **kwargs):
+        """
+        Post view to handle profile update
+        """
+        current_profile = get_object_or_404(UserProfile, user=request.user)
+        form = ProfileForm(request.POST, instance=current_profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile information updated successfully!')
+        return redirect('profile_view')

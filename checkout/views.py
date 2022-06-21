@@ -38,7 +38,6 @@ class CheckoutView(View):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe.api_key = stripe_secret_key
 
-    order_form = OrderForm()
     template = 'checkout/checkout.html'
 
     def get(self, request, *args, **kwargs):
@@ -60,13 +59,28 @@ class CheckoutView(View):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+        order_form = OrderForm()
+
+        if request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=request.user)
+            if user_profile:
+                order_form = OrderForm(initial={
+                    'full_name': user_profile.profile_full_name,
+                    'email': request.user.email,
+                    'phone_number': user_profile.profile_phone_number,
+                    'country': user_profile.profile_country,
+                    'postcode': user_profile.profile_postcode,
+                    'city': user_profile.profile_city,
+                    'street_address1': user_profile.profile_street_address1,
+                    'street_address2': user_profile.profile_street_address2,
+                })
         
         if not stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. \
                 Did you set it up in your environment?')
 
         context = {
-            'order_form': self.order_form,
+            'order_form': order_form,
             'stripe_public_key': stripe_public_key,
             'client_secret': intent.client_secret,
         }

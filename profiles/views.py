@@ -19,8 +19,9 @@ class ProfileView(View):
         current_profile = get_object_or_404(UserProfile, user=request.user)
         order_history = Order.objects.filter(user=request.user)
 
-        form = ProfileForm(instance=profile)
+        form = ProfileForm(instance=current_profile)
         context = {
             'form': form,
+            'orders': order_history,
         }
         return render(request, self.template, context)

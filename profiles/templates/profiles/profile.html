@@ -26,7 +26,23 @@
             <hr>
         </div>
     </div>
-    {{ profile }}
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h4>Profile information</h4>
+            <form mt-3 action="" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form | crispy}}
+                <button class="btn btn-success">Update information</button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6">
+            <h4>Order history</h4>
+            {% for order in orders %}
+            <a href="{% url 'checkout_success' order.order_number %}">{{ order.order_number }}</a>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

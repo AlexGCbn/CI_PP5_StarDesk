@@ -9,6 +9,8 @@ from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 from bag.contexts import bag_contents
 from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
 from .forms import OrderForm
+from profiles.forms import ProfileForm
+from profiles.models import UserProfile
 
 
 @require_POST
@@ -94,7 +96,8 @@ class CheckoutView(View):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.user = request.user
+            if request.user.is_authenticated:
+                order.user = request.user
             order.original_bag = json.dumps(bag)
             order.save()
             for item, quantity in bag.items():
@@ -165,7 +168,21 @@ class CheckoutView(View):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save-info' in request.POST
+            # request.session['save_info'] = 'save-info' in request.POST
+            if 'save-info' in request.POST and request.user.is_authenticated:
+                profile = UserProfile.objects.get(user=request.user)
+                save_data = {
+                    'profile_full_name': order.full_name,
+                    'profile_phone_number': order.phone_number,
+                    'profile_postcode': order.postcode,
+                    'profile_city': order.city,
+                    'profile_street_address1': order.street_address1,
+                    'profile_street_address2': order.street_address2,
+                    'profile_country': order.country,
+                }
+                profile_form = ProfileForm(save_data, instance=profile)
+                if profile_form.is_valid():
+                    profile_form.save()
             messages.success(request, f'Your order was successfully processed! \
                 Order number: {order.order_number}')
             return redirect(reverse('checkout_success', args=[order.order_number]))

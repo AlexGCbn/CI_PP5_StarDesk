@@ -24,6 +24,7 @@ class ProfileView(View):
         context = {
             'form': form,
             'orders': order_history,
+            'on_profile_page': True,
         }
         return render(request, self.template, context)
 

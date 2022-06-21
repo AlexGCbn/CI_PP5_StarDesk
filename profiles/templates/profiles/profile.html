@@ -37,10 +37,24 @@
         </div>
         <div class="col-12 col-lg-6">
             <h4>Order history</h4>
-            {% for order in orders %}
-            <a href="{% url 'checkout_success' order.order_number %}">{{ order.order_number }}</a>
-            <hr>
-            {% endfor %}
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order number</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <td><a href="{% url 'checkout_success' order.order_number %}" target="_blank">{{ order.order_number }}</a></td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.grand_total }}€</td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

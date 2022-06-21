@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 
 from .models import UserProfile
+from checkout.models import Order
+from .forms import ProfileForm
 
 
 class ProfileView(View):
@@ -15,7 +17,10 @@ class ProfileView(View):
         GET request view for User Profiles
         """
         current_profile = get_object_or_404(UserProfile, user=request.user)
+        order_history = Order.objects.filter(user=request.user)
+
+        form = ProfileForm(instance=profile)
         context = {
-            'profile': current_profile,
+            'form': form,
         }
         return render(request, self.template, context)

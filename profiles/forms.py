@@ -1,15 +1,11 @@
 from django import forms
-from .models import Order
+from .models import UserProfile
 
 
-class OrderForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
-        model = Order
-        fields = (
-            'full_name', 'email', 'phone_number',
-            'street_address1', 'street_address2',
-            'city', 'postcode', 'country',
-        )
+        model = UserProfile
+        exclude = ('user', )
 
     def __init__(self, *args, **kwargs):
         """
@@ -18,18 +14,17 @@ class OrderForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'Full Name',
-            'email': 'Email Address',
-            'phone_number': 'Phone Number',
-            'postcode': 'Postal Code',
-            'city': 'City',
-            'street_address1': 'Street Address 1',
-            'street_address2': 'Street Address 2',
+            'profile_full_name': 'Full Name',
+            'profile_phone_number': 'Phone Number',
+            'profile_postcode': 'Postal Code',
+            'profile_city': 'City',
+            'profile_street_address1': 'Street Address 1',
+            'profile_street_address2': 'Street Address 2',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True
+        self.fields['profile_full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'country':
+            if field != 'profile_country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:

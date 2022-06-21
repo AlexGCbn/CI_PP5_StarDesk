@@ -166,6 +166,8 @@ class CheckoutView(View):
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
+            messages.success(request, f'Your order was successfully processed! \
+                Order number: {order.order_number}')
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your order form. \
@@ -182,11 +184,8 @@ class CheckoutSuccessView(View):
         """
         GET request view for checkout success
         """
-        save_info = request.session.get('save_info')
-        order = get_object_or_404(Order, order_number = order_number)
+        order = get_object_or_404(Order, order_number=order_number)
         product_list = []
-        messages.success(request, f'Your order was successfully processed! \
-            Order number: {order.order_number}')
         if 'bag' in request.session:
             del request.session['bag']
 
@@ -201,7 +200,7 @@ class CheckoutSuccessView(View):
             try:
                 item_object = item.get()
                 product_list.append(item_object)
-            except:
+            except Exception:
                 continue
         context = {
             'order': order,

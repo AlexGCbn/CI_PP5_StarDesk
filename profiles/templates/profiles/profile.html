@@ -48,7 +48,8 @@
                     </thead>
                     <tbody>
                         {% for order in orders %}
-                        <td><a href="{% url 'checkout_success' order.order_number %}" target="_blank">{{ order.order_number }}</a></td>
+                        <td><a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}"
+                                target="_blank">{{ order.order_number | truncatechars:8 }}</a></td>
                         <td>{{ order.date }}</td>
                         <td>{{ order.grand_total }}€</td>
                         {% endfor %}

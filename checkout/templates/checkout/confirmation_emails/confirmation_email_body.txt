@@ -1,0 +1,29 @@
+Dear {{ order.full_name }},
+
+Thank you for ordering from Stardesk! 
+Below you will find your order details. If there are any issues, don't hesitate to contact us at {{ contact_email }}
+
+Order Number: {{ order.order_number }}
+Date: {{ order.date }}
+
+Products:
+{% for item in products %}
+---------------------------------------------
+
+{{ item.product.manufacturer }} {{ item.product.model }} - {{ item.product.price }}€
+{% endfor %}
+Total: {{ order.order_total }}€
+Delivery: {{ order.delivery_cost }}€
+Grand Total: {{ order.grand_total }}€
+
+Your shipping details:
+Address: {{ order.street_address1 }}, {{ order.city }}, {{ order.postcode }}
+{% if order.street_address2 %}
+Secondary address: {{ order.street_address2 }}
+{% endif %}
+Phone number: {{ order.phone_number }}
+
+We hope you enjoy your new components! 
+
+Best regards,
+The Stardesk team

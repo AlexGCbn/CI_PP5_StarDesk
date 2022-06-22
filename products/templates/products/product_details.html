@@ -23,7 +23,7 @@
                         alt="{{ product.manufacturer }} {{ product.model }}">
                 </a>
                 {% else %}
-                <a href="{{ product.image.url }}" target="_blank">
+                <a href="{{ MEDIA_URL }}no-image.png" target="_blank">
                     <img src="{{ MEDIA_URL }}no-image.png" class="product-img p-1 img-fluid"
                         alt="{{ product.manufacturer }} {{ product.model }}">
                 </a>

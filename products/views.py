@@ -245,3 +245,32 @@ class AdminProductView(View):
             'storage_form': storage_form,
         }
         return render(request, template, context)
+
+    def post(self, request, *args, **kwargs):
+        """
+        POST request to handle form submission
+        Reads the category and makes POST based on it
+        """
+        category = request.POST.get('category')
+        if category == 'case':
+            form = CaseForm(request.POST, request.FILES)
+        elif category == 'motherboard':
+            form = MotherboardForm(request.POST, request.FILES)
+        elif category == 'cpu':
+            form = CpuForm(request.POST, request.FILES)
+        elif category == 'gpu':
+            form = GpuForm(request.POST, request.FILES)
+        elif category == 'ram':
+            form = RamForm(request.POST, request.FILES)
+        elif category == 'psu':
+            form = PsuForm(request.POST, request.FILES)
+        elif category == 'storage':
+            form = StorageForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            new_product = form.save()
+            messages.success(request, 'Product added successfully!')
+            return redirect('product_details', id=new_product.id, category=category)
+        else:
+            messages.error(request, 'There was an error adding product.')
+            return redirect('admin_add_product')

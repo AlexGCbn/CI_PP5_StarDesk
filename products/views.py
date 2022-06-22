@@ -348,24 +348,24 @@ class ManageProduct(View):
         elif kwargs['category'] == 'storage':
             product = Storage.objects.get(id=kwargs['id'])
         if kwargs['operation'] == 'edit':
-            if category == 'case':
-                form = CaseForm(request.POST, request.FILES)
-            elif category == 'motherboard':
-                form = MotherboardForm(request.POST, request.FILES)
-            elif category == 'cpu':
-                form = CpuForm(request.POST, request.FILES)
-            elif category == 'gpu':
-                form = GpuForm(request.POST, request.FILES)
-            elif category == 'ram':
-                form = RamForm(request.POST, request.FILES)
-            elif category == 'psu':
-                form = PsuForm(request.POST, request.FILES)
-            elif category == 'storage':
-                form = StorageForm(request.POST, request.FILES)
+            if kwargs['category'] == 'case':
+                form = CaseForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'motherboard':
+                form = MotherboardForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'cpu':
+                form = CpuForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'gpu':
+                form = GpuForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'ram':
+                form = RamForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'psu':
+                form = PsuForm(request.POST, request.FILES, instance=product)
+            elif kwargs['category'] == 'storage':
+                form = StorageForm(request.POST, request.FILES, instance=product)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Product edited successfully!')
-                return redirect('product_details', id=product_id, category=category)
+                return redirect('product_details', id=kwargs['id'], category=kwargs['category'])
         elif kwargs['operation'] == 'delete':
             product.delete()
             return redirect('products')

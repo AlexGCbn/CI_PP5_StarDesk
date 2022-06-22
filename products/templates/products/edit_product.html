@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <h3>Edit product:</h3>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-lg-6">
+            {% if category == 'case' %}
+            <form class="add-form" action="" method="POST" id="case-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ case_form | crispy }}
+                <input type="hidden" name="category" value="case">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'motherboard' %}
+            <form class="add-form" action="" method="POST" id="motherboard-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ motherboard_form | crispy }}
+                <input type="hidden" name="category" value="motherboard">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'cpu' %}
+            <form class="add-form" action="" method="POST" id="cpu-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ cpu_form | crispy }}
+                <input type="hidden" name="category" value="cpu">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'gpu' %}
+            <form class="add-form" action="" method="POST" id="gpu-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ gpu_form | crispy }}
+                <input type="hidden" name="category" value="gpu">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'ram' %}
+            <form class="add-form" action="" method="POST" id="ram-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ ram_form | crispy }}
+                <input type="hidden" name="category" value="ram">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'psu' %}
+            <form class="add-form" action="" method="POST" id="psu-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ psu_form | crispy }}
+                <input type="hidden" name="category" value="psu">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% else if category == 'storage' %}
+            <form class="add-form" action="" method="POST" id="storage-add-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ storage_form | crispy }}
+                <input type="hidden" name="category" value="storage">
+                <button type="submit" class="btn btn-success">Add product</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

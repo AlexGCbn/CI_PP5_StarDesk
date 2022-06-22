@@ -33,6 +33,37 @@
             <form class="add-form" action="" method="POST" id="case-add-form">
                 {% csrf_token %}
                 {{ case_form | crispy }}
+                <input type="hidden" name="category" value="case">
+            </form>
+            <form class="add-form" action="" method="POST" id="motherboard-add-form">
+                {% csrf_token %}
+                {{ motherboard_form | crispy }}
+                <input type="hidden" name="category" value="motherboard">
+            </form>
+            <form class="add-form" action="" method="POST" id="cpu-add-form">
+                {% csrf_token %}
+                {{ cpu_form | crispy }}
+                <input type="hidden" name="category" value="cpu">
+            </form>
+            <form class="add-form" action="" method="POST" id="gpu-add-form">
+                {% csrf_token %}
+                {{ gpu_form | crispy }}
+                <input type="hidden" name="category" value="gpu">
+            </form>
+            <form class="add-form" action="" method="POST" id="ram-add-form">
+                {% csrf_token %}
+                {{ ram_form | crispy }}
+                <input type="hidden" name="category" value="ram">
+            </form>
+            <form class="add-form" action="" method="POST" id="psu-add-form">
+                {% csrf_token %}
+                {{ psu_form | crispy }}
+                <input type="hidden" name="category" value="psu">
+            </form>
+            <form class="add-form" action="" method="POST" id="storage-add-form">
+                {% csrf_token %}
+                {{ storage_form | crispy }}
+                <input type="hidden" name="category" value="storage">
             </form>
         </div>
     </div>
@@ -44,7 +75,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var forms = $('.add-form');
-        forms[0].pop();
+        forms.splice(0,1);
         forms.hide();
     })
     $('#id_add_product_control').change(function() {

@@ -229,7 +229,19 @@ class AdminProductView(View):
         """
         template = 'products/add_product.html'
         case_form = CaseForm()
+        motherboard_form = MotherboardForm()
+        cpu_form = CpuForm()
+        gpu_form = GpuForm()
+        ram_form = RamForm()
+        psu_form = PsuForm()
+        storage_form = StorageForm()
         context = {
             'case_form': case_form,
+            'motherboard_form': motherboard_form,
+            'cpu_form': cpu_form,
+            'gpu_form': gpu_form,
+            'ram_form': ram_form,
+            'psu_form': psu_form,
+            'storage_form': storage_form,
         }
         return render(request, template, context)

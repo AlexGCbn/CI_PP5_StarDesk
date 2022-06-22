@@ -227,6 +227,10 @@ class AdminProductView(View):
         """
         GET request to display forms on page
         """
+        if not request.user.is_superuser:
+            messages.error(request, 'Access denied!')
+            return redirect(reverse('products'))
+
         template = 'products/add_product.html'
         case_form = CaseForm()
         motherboard_form = MotherboardForm()
@@ -251,6 +255,10 @@ class AdminProductView(View):
         POST request to handle form submission
         Reads the category and makes POST based on it
         """
+        if not request.user.is_superuser:
+            messages.error(request, 'Access denied!')
+            return redirect(reverse('products'))
+
         category = request.POST.get('category')
         if category == 'case':
             form = CaseForm(request.POST, request.FILES)
@@ -285,6 +293,10 @@ class ManageProduct(View):
         """
         GET request to display edit form
         """
+        if not request.user.is_superuser:
+            messages.error(request, 'Access denied!')
+            return redirect(reverse('products'))
+
         template = 'products/edit_product.html'
         if kwargs['category'] == 'case':
             product = Case.objects.get(id=kwargs['id'])
@@ -317,6 +329,10 @@ class ManageProduct(View):
         """
         POST request to edit/delete product
         """
+        if not request.user.is_superuser:
+            messages.error(request, 'Access denied!')
+            return redirect(reverse('products'))
+
         if kwargs['category'] == 'case':
             product = Case.objects.get(id=kwargs['id'])
         elif kwargs['category'] == 'motherboard':

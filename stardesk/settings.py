@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # Other apps
     'crispy_forms',
     "crispy_bootstrap5",
+    'storages',
 
     # Custom apps
     'home',
@@ -193,6 +194,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 7
+
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'stardesk'
+    AWS_S3_REGION_NAME = 'eu-central-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Stripe
 STRIPE_CURRENCY = 'eur'

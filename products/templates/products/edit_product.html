@@ -20,51 +20,51 @@
             {% if category == 'case' %}
             <form class="add-form" action="" method="POST" id="case-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ case_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="case">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'motherboard' %}
+            {% elif category == 'motherboard' %}
             <form class="add-form" action="" method="POST" id="motherboard-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ motherboard_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="motherboard">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'cpu' %}
+            {% elif category == 'cpu' %}
             <form class="add-form" action="" method="POST" id="cpu-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ cpu_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="cpu">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'gpu' %}
+            {% elif category == 'gpu' %}
             <form class="add-form" action="" method="POST" id="gpu-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ gpu_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="gpu">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'ram' %}
+            {% elif category == 'ram' %}
             <form class="add-form" action="" method="POST" id="ram-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ ram_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="ram">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'psu' %}
+            {% elif category == 'psu' %}
             <form class="add-form" action="" method="POST" id="psu-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ psu_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="psu">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
-            {% else if category == 'storage' %}
+            {% elif category == 'storage' %}
             <form class="add-form" action="" method="POST" id="storage-add-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ storage_form | crispy }}
+                {{ form | crispy }}
                 <input type="hidden" name="category" value="storage">
-                <button type="submit" class="btn btn-success">Add product</button>
+                <button type="submit" class="btn btn-success">Submit changes</button>
             </form>
             {% endif %}
         </div>

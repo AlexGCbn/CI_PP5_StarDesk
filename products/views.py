@@ -274,3 +274,82 @@ class AdminProductView(View):
         else:
             messages.error(request, 'There was an error adding product.')
             return redirect('admin_add_product')
+
+
+class ManageProduct(View):
+    """
+    Class based view for editing/deleting products
+    """
+
+    def get(self, request, *args, **kwargs):
+        """
+        GET request to display edit form
+        """
+        template = 'products/edit_product.html'
+        if kwargs['category'] == 'case':
+            product = Case.objects.get(id=kwargs['id'])
+            form = CaseForm(instance=product)
+        elif kwargs['category'] == 'motherboard':
+            product = Motherboard.objects.get(id=kwargs['id'])
+            form = MotherboardForm(instance=product)
+        elif kwargs['category'] == 'cpu':
+            product = Cpu.objects.get(id=kwargs['id'])
+            form = CpuForm(instance=product)
+        elif kwargs['category'] == 'gpu':
+            product = Gpu.objects.get(id=kwargs['id'])
+            form = GpuForm(instance=product)
+        elif kwargs['category'] == 'ram':
+            product = Ram.objects.get(id=kwargs['id'])
+            form = RamForm(instance=product)
+        elif kwargs['category'] == 'psu':
+            product = Psu.objects.get(id=kwargs['id'])
+            form = PsuForm(instance=product)
+        elif kwargs['category'] == 'storage':
+            product = Storage.objects.get(id=kwargs['id'])
+            form = StorageForm(instance=product)
+        context = {
+            'form': form,
+            'category': product.category,
+        }
+        return render(request, template, context)
+
+    def post(self, request, *args, **kwargs):
+        """
+        POST request to edit/delete product
+        """
+        if kwargs['category'] == 'case':
+            product = Case.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'motherboard':
+            product = Motherboard.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'cpu':
+            product = Cpu.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'gpu':
+            product = Gpu.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'ram':
+            product = Ram.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'psu':
+            product = Psu.objects.get(id=kwargs['id'])
+        elif kwargs['category'] == 'storage':
+            product = Storage.objects.get(id=kwargs['id'])
+        if kwargs['operation'] == 'edit':
+            if category == 'case':
+                form = CaseForm(request.POST, request.FILES)
+            elif category == 'motherboard':
+                form = MotherboardForm(request.POST, request.FILES)
+            elif category == 'cpu':
+                form = CpuForm(request.POST, request.FILES)
+            elif category == 'gpu':
+                form = GpuForm(request.POST, request.FILES)
+            elif category == 'ram':
+                form = RamForm(request.POST, request.FILES)
+            elif category == 'psu':
+                form = PsuForm(request.POST, request.FILES)
+            elif category == 'storage':
+                form = StorageForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Product edited successfully!')
+                return redirect('product_details', id=product_id, category=category)
+        elif kwargs['operation'] == 'delete':
+            product.delete()
+            return redirect('products')

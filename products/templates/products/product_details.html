@@ -87,8 +87,18 @@
                                 value="Add to bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        <input type="hidden" name="product_friendly_name" value="{{ product.manufacturer }} {{ product.model }}">
+                        <input type="hidden" name="product_friendly_name"
+                            value="{{ product.manufacturer }} {{ product.model }}">
                     </div>
+                </form>
+                <a href="{% url 'admin_edit_product' category=product.category id=product.id operation='edit' %}"
+                    class="btn btn-warning">Edit
+                    product</a>
+                <form
+                    action="{% url 'admin_edit_product' category=product.category id=product.id operation='delete' %}"
+                    method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>

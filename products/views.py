@@ -2,7 +2,17 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.views import View
-from .models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
+from .forms import (
+    CaseForm, MotherboardForm,
+    CpuForm, GpuForm,
+    RamForm, PsuForm,
+    StorageForm
+)
+from .models import (
+    Case, Motherboard,
+    Cpu, Gpu, Ram,
+    Psu, Storage
+)
 
 
 class AllProductsView(View):
@@ -205,3 +215,21 @@ class ProductDetails(View):
         request.session['bag'] = bag
         messages.success(request, f'Added {quantity}x {product_name} to your bag.')
         return redirect(redirect_url)
+
+
+class AdminProductView(View):
+    """
+    Class Based View for adding products
+    Only accessible by superusers
+    """
+
+    def get(self, request, *args, **kwargs):
+        """
+        GET request to display forms on page
+        """
+        template = 'products/add_product.html'
+        case_form = CaseForm()
+        context = {
+            'case_form': case_form,
+        }
+        return render(request, template, context)

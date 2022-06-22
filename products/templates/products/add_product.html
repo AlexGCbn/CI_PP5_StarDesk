@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-lg-6">
+            <h2>Pick a category:</h2>
+            <select name="add_product_control" id="id_add_product_control" class="">
+                <option value="case">Case</option>
+                <option value="motherboard">Motherboard</option>
+                <option value="cpu">Cpu</option>
+                <option value="gpu">Gpu</option>
+                <option value="ram">Ram</option>
+                <option value="psu">Psu</option>
+                <option value="storage">Storage</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-lg-6">
+            <form class="add-form" action="" method="POST" id="case-add-form">
+                {% csrf_token %}
+                {{ case_form | crispy }}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        var forms = $('.add-form');
+        forms[0].pop();
+        forms.hide();
+    })
+    $('#id_add_product_control').change(function() {
+        var forms = $('.add-form');
+        forms.hide();
+        var selector = $(this);
+        var currentSelection = selector.val();
+        var formSelection = `#${currentSelection}-add-form`;
+        $(`${formSelection}`).show();
+    })
+</script>
+{% endblock %}

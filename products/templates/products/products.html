@@ -24,7 +24,7 @@
         </div>
     </div>
     <!-- Start of BA code - To be changed to be on the side -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="product-container col-10 offset-1">
             <div class="row mt-1 mb-2 justify-content-center">
                 <div class="col-12 col-md-4 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
@@ -58,10 +58,20 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End of BA code -->
     <div class="row">
-        <div class="product-container col-10 offset-1">
+        <div class="col-12 col-lg-2 sorting-container text-center text-lg-start">
+            <h4>Sort by:</h4>
+            <ul id="sorting-list">
+                <li class="my-2"><i class="fa-solid fa-angle-up"></i> <a href="{% url 'products' %}?category={{category}}&sort=price&direction=asc">Price: Low to High</a></li>
+                <li class="my-2"><i class="fa-solid fa-angle-down"></i> <a href="{% url 'products' %}?category={{category}}&sort=price&direction=desc">Price: High to Low</a></li>
+                <hr>
+                <li class="my-2"><i class="fa-solid fa-angle-up"></i> <a href="{% url 'products' %}?category={{category}}&sort=rating&direction=asc">Rating: Low to High</a></li>
+                <li class="my-2"><i class="fa-solid fa-angle-down"></i> <a href="{% url 'products' %}?category={{category}}&sort=rating&direction=desc">Rating: High to Low</a></li>
+            </ul>
+        </div>
+        <div class="product-container col-12 col-lg-8">
             {% for product in products %}
             <div class="row d-flex justify-content-center">
                 <div class="col col-md-9 col-lg-7">
@@ -119,28 +129,8 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('.go-top-link').click(function(e) {
-        window.ScrollTo(0,0)
+    $('.go-top-link').click(function (e) {
+        window.ScrollTo(0, 0)
     });
-    $('#sort-selector').change(function() {
-            var selector = $(this);
-            var currentUrl = new URL(window.location);
-
-            var selectedVal = selector.val();
-            if(selectedVal != "reset"){
-                var sort = selectedVal.split("_")[0];
-                var direction = selectedVal.split("_")[1];
-
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-
-                window.location.replace(currentUrl);
-            } else {
-                currentUrl.searchParams.delete("sort");
-                currentUrl.searchParams.delete("direction");
-
-                window.location.replace(currentUrl);
-            }
-        });
 </script>
 {% endblock %}

@@ -91,6 +91,8 @@
                             value="{{ product.manufacturer }} {{ product.model }}">
                     </div>
                 </form>
+                {% if request.user.is_superuser %}
+                <hr>
                 <a href="{% url 'admin_edit_product' category=product.category id=product.id operation='edit' %}"
                     class="btn btn-warning">Edit
                     product</a>
@@ -100,6 +102,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     </div>

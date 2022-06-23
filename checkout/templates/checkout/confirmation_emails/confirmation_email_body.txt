@@ -12,6 +12,7 @@ Products:
 
 {{ item.product.manufacturer }} {{ item.product.model }} - {{ item.product.price }}€
 {% endfor %}
+---------------------------------------------
 Total: {{ order.order_total }}€
 Delivery: {{ order.delivery_cost }}€
 Grand Total: {{ order.grand_total }}€

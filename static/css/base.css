@@ -20,10 +20,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-/* .container {
-    background: rgba(0, 0, 0, 0.6);
-} */
-
 /* from Bulma */
 .icon {
     align-items: center;
@@ -83,15 +79,18 @@ body {
     border: none !important;
 }
 
-/* .product-col {
-    border-left: 2px solid #000;
-    border-right: 2px solid #000;
-} */
+.navigation-container {
+    background-color: #DFF6FF;
+}
 
 .product-btn {
+    background: rgba(0, 0, 0, 0.5);
     text-decoration: none;
-    color: #000;
+    color: #fff;
     word-wrap: normal;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    text-align: center;
 }
 
 .overlay {

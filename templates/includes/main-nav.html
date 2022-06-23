@@ -1,46 +1,46 @@
 <div class="collapse navbar-collapse m-0 p-0" id="main-nav">
-    <div class="container-fluid text-black m-0 p-0">
+    <div class="container-fluid text-black m-0 p-0 navigation-container">
         <div class="row justify-content-evenly m-0 p-0">
-            <div class="row m-0 p-0">
+            <div class="row mt-2 p-0">
                 <div class="col text-center p-0">
-                    <h4>All Products</h4>
+                    <h4 class="text-center">All Products</h4>
                 </div>
             </div>
             <div class="row text-center m-0 p-0 justify-content-around">
-                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}" class="product-btn">All Products</a></div>
-                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}?sort=price&direction=asc" class="product-btn">By Price</a></div>
-                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}?sort=rating&direction=desc" class="product-btn">By Rating</a></div>
+                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}" class="product-btn p-2 m-1 m-sm-2">All Products</a></div>
+                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}?sort=price&direction=asc" class="product-btn p-2 m-1 m-sm-2">By Price</a></div>
+                <div class="col-7 col-sm-4 my-2"><a href="{% url 'products' %}?sort=rating&direction=desc" class="product-btn p-2 m-1 m-sm-2">By Rating</a></div>
             </div>
         </div>
         <hr>
         <div class="row m-0 p-0">
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>Cases</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">Cases</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=case" class="product-btn col-10 p-1 m-1 m-sm-2">All Cases</a>
                     <a href="{% url 'products' %}?category=case&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=case&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>MoBos</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">MoBos</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=motherboard" class="product-btn col-10 p-1 m-1 m-sm-2">All MoBos</a>
                     <a href="{% url 'products' %}?category=motherboard&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=motherboard&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>CPUs</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">CPUs</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=cpu" class="product-btn col-10 p-1 m-1 m-sm-2">All CPUs</a>
                     <a href="{% url 'products' %}?category=cpu&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=cpu&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>GPUs</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">GPUs</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=gpu" class="product-btn col-10 p-1 m-1 m-sm-2">All GPUs</a>
                     <a href="{% url 'products' %}?category=gpu&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=gpu&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
@@ -50,148 +50,29 @@
         <hr>
         <div class="row m-0 p-0">
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>RAM</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">RAM</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=ram" class="product-btn col-10 p-1 m-1 m-sm-2">All RAM</a>
                     <a href="{% url 'products' %}?category=ram&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=ram&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>PSUs</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">PSUs</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=psu" class="product-btn col-10 p-1 m-1 m-sm-2">All PSUs</a>
                     <a href="{% url 'products' %}?category=psu&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=psu&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
             <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>Storage</h4>
-                <div class="row m-0 p-0">
+                <h4 class="text-center">Storage</h4>
+                <div class="row m-0 p-0 justify-content-center">
                     <a href="{% url 'products' %}?category=storage" class="product-btn col-10 p-1 m-1 m-sm-2">All Storage</a>
                     <a href="{% url 'products' %}?category=storage&sort=price&direction=asc" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
                     <a href="{% url 'products' %}?category=storage&sort=rating&direction=desc" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
                 </div>
             </div>
-            <!-- <div class="col-6 col-sm-3 product-col mt-1">
-                <h4>Drives</h4>
-                <div class="row m-0 p-0">
-                    <a href="" class="product-btn col-10 p-1 m-1 m-sm-2">By Price</a>
-                    <a href="" class="product-btn col-10 p-1 m-1 m-sm-2">By Rating</a>
-                    <a href="{% url 'products' %}?category=" class="product-btn col-10 p-1 m-1 m-sm-2">All Drives</a>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
-<!-- BA Style navbar -->
-<!-- <ul class="navbar-nav w-auto mx-auto">
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Products
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
-                <a href="" class="dropdown-item">All Products</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cases
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="cases-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All Cases</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Motherboards
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="motherboards-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All Motherboards</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                CPUs
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="cpus-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All CPUs</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                GPUs
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="gpus-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All GPUs</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                RAM
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="ram-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All RAM</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                PSUs
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="psus-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All PSUs</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Storage
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="storage-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All Storage</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Drives
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="drives-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item">All Drives</a>
-            </div>
-        </li>
-    </ul> -->

@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <header class="container-fuild fixed-top">
+    <header class="container-fuild fixed-top" id="nav-element">
         <!-- <div class="container-fuild-fixed-top"> -->
         <div class="row d-none d-lg-flex m-0 p-0 navigation-container" id="topnav">
             <!-- Free delivery banner -->
@@ -60,7 +60,7 @@
             </div>
             <!-- Products -->
             <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
-                <nav class="navbar navbar-light">
+                <nav class="navbar navbar-light ">
                     <div class="container-fluid products-container">
                         <button class="navbar-toggler products-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
@@ -97,7 +97,7 @@
                                 <p class="my-0">My Account</p>
                             </div>
                         </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        <div class="dropdown-menu border-0 navigation-container" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
                             <a href="{% url 'admin_add_product' %}" class="dropdown-item">Add product</a>
@@ -170,6 +170,12 @@
             return new bootstrap.Toast(toastEl)
         })
         toastList.forEach(toast => toast.show())
+
+        var width = window.screen.width;
+        if (width < 992) {
+            $('#nav-element').removeClass('fixed-top');
+            $('.header-container').hide();
+        }
     </script>
     {% endblock %}
 

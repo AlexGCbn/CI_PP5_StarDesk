@@ -90,9 +90,9 @@
 </div>
 <div class="row w-100">
     <div class="col go-top-button text-center p-1 m-0">
-        <p class="go-top-link text-black d-flex h-100 justify-content-center">
+        <a class="go-top-link text-black d-flex h-100 justify-content-center">
             <i class="fa-solid fa-chevron-up"></i>
-        </p>
+        </a>
     </div>
 </div>
 {% endblock %}
@@ -101,7 +101,7 @@
 {{ block.super }}
 <script type="text/javascript">
     $('.go-top-link').click(function (e) {
-        window.ScrollTo(0, 0)
+        window.scrollTo(0, 0)
     });
 </script>
 {% endblock %}

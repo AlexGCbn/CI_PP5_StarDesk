@@ -124,12 +124,16 @@
                 {% if request.user.is_superuser %}
                 <hr>
                 <div class="row d-flex">
-                    <div class="col-6">
+                    <div class="col-4">
                         <a href="{% url 'admin_edit_product' category=product.category id=product.id operation='edit' %}"
                             class="btn btn-warning">Edit
                             product</a>
                     </div>
-                    <div class="col-6 justify-content-end text-end">
+                    <div class="col-4 text-center">
+                        <a href="{% url 'add_deal' category=product.category id=product.id %}"
+                            class="btn btn-success">Add Deal</a>
+                    </div>
+                    <div class="col-4 justify-content-end text-end">
                         <form
                             action="{% url 'admin_edit_product' category=product.category id=product.id operation='delete' %}"
                             method="POST" id="deleteForm">
@@ -170,7 +174,7 @@
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
 <script type="text/javascript">
-    $('#submitButton').click(function() {
+    $('#submitButton').click(function () {
         $('#deleteForm').submit();
     })
 </script>

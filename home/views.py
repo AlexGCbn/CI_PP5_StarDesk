@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
 from products.models import (
     Case, Motherboard,
     Cpu, Gpu, Ram,
@@ -39,28 +40,29 @@ class AdminAddDeal(View):
         template = 'home/add_deal.html'
         if kwargs['category'] == 'case':
             product = Case.objects.get(id=kwargs['id'])
-            form = DealCaseForm(instance=product)
+            form = DealCaseForm(initial={'product': product})
         elif kwargs['category'] == 'motherboard':
             product = Motherboard.objects.get(id=kwargs['id'])
-            form = DealMotherboardForm(instance=product)
+            form = DealMotherboardForm(initial={'product': product})
         elif kwargs['category'] == 'cpu':
             product = Cpu.objects.get(id=kwargs['id'])
-            form = DealCpuForm(instance=product)
+            form = DealCpuForm(initial={'product': product})
         elif kwargs['category'] == 'gpu':
             product = Gpu.objects.get(id=kwargs['id'])
-            form = DealGpuForm(instance=product)
+            form = DealGpuForm(initial={'product': product})
         elif kwargs['category'] == 'ram':
             product = Ram.objects.get(id=kwargs['id'])
-            form = DealRamForm(instance=product)
+            form = DealRamForm(initial={'product': product})
         elif kwargs['category'] == 'psu':
             product = Psu.objects.get(id=kwargs['id'])
-            form = DealPsuForm(instance=product)
+            form = DealPsuForm(initial={'product': product})
         elif kwargs['category'] == 'storage':
             product = Storage.objects.get(id=kwargs['id'])
-            form = DealStorageForm(instance=product)
+            form = DealStorageForm(initial={'product': product})
         context = {
             'product': product,
             'form': form,
+            'category': product.category,
         }
         return render(request, template, context)
     
@@ -73,19 +75,19 @@ class AdminAddDeal(View):
 
         category = request.POST.get('category')
         if category == 'case':
-            form = CaseForm(request.POST, request.FILES)
+            form = DealCaseForm(request.POST, request.FILES)
         elif category == 'motherboard':
-            form = MotherboardForm(request.POST, request.FILES)
+            form = DealMotherboardForm(request.POST, request.FILES)
         elif category == 'cpu':
-            form = CpuForm(request.POST, request.FILES)
+            form = DealCpuForm(request.POST, request.FILES)
         elif category == 'gpu':
-            form = GpuForm(request.POST, request.FILES)
+            form = DealGpuForm(request.POST, request.FILES)
         elif category == 'ram':
-            form = RamForm(request.POST, request.FILES)
+            form = DealRamForm(request.POST, request.FILES)
         elif category == 'psu':
-            form = PsuForm(request.POST, request.FILES)
+            form = DealPsuForm(request.POST, request.FILES)
         elif category == 'storage':
-            form = StorageForm(request.POST, request.FILES)
+            form = DealStorageForm(request.POST, request.FILES)
         
         if form.is_valid():
             new_deal = form.save()

@@ -222,7 +222,7 @@ class CheckoutSuccessView(View):
 
         for item in (
             order.lineitem_case,
-            order.lineitem_mobo,
+            order.lineitem_motherboard,
             order.lineitem_cpu,
             order.lineitem_gpu,
             order.lineitem_ram,

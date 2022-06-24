@@ -41,7 +41,7 @@ class Order(models.Model):
         """
         self.order_total = (
             (self.lineitem_case.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
-            (self.lineitem_mobo.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
+            (self.lineitem_motherboard.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
             (self.lineitem_cpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
             (self.lineitem_gpu.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
             (self.lineitem_ram.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0) +
@@ -66,120 +66,63 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
-class OrderLineCase(models.Model):
+
+class OrderLineItem(models.Model):
+    """Main OrderLineItem model class"""
+    quantity = models.IntegerField(null=False, blank=False, default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Order item {self.product.manufacturer} {self.product.model}'
+
+    class Meta:
+        abstract = True
+
+
+class OrderLineCase(OrderLineItem):
+    """OrderLineCase submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_case')
     product = models.ForeignKey(Case, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLineMotherboard(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_mobo')
+class OrderLineMotherboard(OrderLineItem):
+    """OrderLineMotherboard submodel"""
+    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_motherboard')
     product = models.ForeignKey(Motherboard, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLineCpu(models.Model):
+class OrderLineCpu(OrderLineItem):
+    """OrderLineCpu submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_cpu')
     product = models.ForeignKey(Cpu, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLineGpu(models.Model):
+class OrderLineGpu(OrderLineItem):
+    """OrderLineGpu submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_gpu')
     product = models.ForeignKey(Gpu, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLineRam(models.Model):
+class OrderLineRam(OrderLineItem):
+    """OrderLineRam submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_ram')
     product = models.ForeignKey(Ram, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLinePsu(models.Model):
+class OrderLinePsu(OrderLineItem):
+    """OrderLinePsu submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_psu')
     product = models.ForeignKey(Psu, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'
 
 
-class OrderLineStorage(models.Model):
+class OrderLineStorage(OrderLineItem):
+    """OrderLineStorage submodel"""
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem_storage')
     product = models.ForeignKey(Storage, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Order item {self.product.manufacturer} {self.product.model}'

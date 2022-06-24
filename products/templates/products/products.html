@@ -23,43 +23,6 @@
             {% endif %}
         </div>
     </div>
-    <!-- Start of BA code - To be changed to be on the side -->
-    <!-- <div class="row">
-        <div class="product-container col-10 offset-1">
-            <div class="row mt-1 mb-2 justify-content-center">
-                <div class="col-12 col-md-4 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="form-select-wrapper w-50">
-                        <select id="sort-selector"
-                            class="form-select form-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
-                            </option>
-                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
-                                Price (low to high)
-                            </option>
-                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
-                                Price (high to low)
-                            </option>
-                            <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>
-                                Rating (low to high)
-                            </option>
-                            <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>
-                                Rating (high to low)
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 order-md-first">
-                    <p class="text-muted mt-3 text-center text-md-left">
-                        <span class="small"><a href="{% url 'products' %}" class="text-decoration-none">
-                                <i class="fa-solid fa-house"></i></a> | </span>
-                        {{ products|length }} Products{% if search_term %} found for
-                        <strong>"{{ search_term }}"</strong>{% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End of BA code -->
     <div class="row">
         <div class="col-12 col-lg-2 sorting-container text-center text-lg-start">
             <h4>Sort by:</h4>
@@ -80,7 +43,7 @@
                             {% if product.image %}
                             <a href="{% url 'product_details' product.category product.id %}"
                                 class="product-img-container d-flex align-items-center justify-content-center">
-                                <img src="{{ product.image.url }}" class="product-img p-1 img-fluid"
+                                <img src="{{ product.image.url }}" class="product-img p-2 img-fluid"
                                     alt="{{ product.manufacturer }} {{ product.model }}">
                             </a>
                             {% else %}

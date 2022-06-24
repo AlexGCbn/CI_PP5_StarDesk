@@ -37,9 +37,25 @@
                     {% if product.category == 'case' %}
                     <h6>Max motherboard size: {{ product.get_mobo_sizes_display }}</h6>
                     {% elif product.category == 'motherboard' %}
-                    <h6>Motherboard size: {{ product.size }}</h6>
+                    <h6>Motherboard size: {{ product.get_size_display }}</h6>
                     <h6>CPU socket: {{ product.socket }}</h6>
                     <h6>RAM type: {{ product.get_ram_type_display }}</h6>
+                    {% elif product.category == 'cpu' %}
+                    <h6>Socket: {{ product.get_socket_display }}</h6>
+                    <h6>Nr. of Cores: {{ product.core_count }}</h6>
+                    {% elif product.category == 'gpu' %}
+                    <h6>Core speed: {{ product.speed }} MHz</h6>
+                    <h6>Memory capacity: {{ product.memory_capacity }} GB</h6>
+                    {% elif product.category == 'ram' %}
+                    <h6>Speed: {{ product.speed }} MHz</h6>
+                    <h6>Memory capacity: {{ product.capacity }} GB</h6>
+                    <h6>RAM type: {{ product.get_type_display }}</h6>
+                    {% elif product.category == 'psu' %}
+                    <h6>Wattage: {{ product.wattage }} W</h6>
+                    <h6>Category: {{ product.get_e_category_display }}</h6>
+                    {% elif product.category == 'storage' %}
+                    <h6>Capacity: {{ product.capacity }} GB</h6>
+                    <h6>Speed: {{ product.speed }} MB/s</h6>
                     {% endif %}
                 </div>
             </div>

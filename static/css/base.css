@@ -134,6 +134,10 @@ i {
 } */
 
 .product-img {
+    max-height: 100%;
+}
+
+.product-img-detail {
     max-height: 500px;
 }
 

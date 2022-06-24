@@ -20,13 +20,13 @@
                 {% if product.image %}
                 <a href="{{ product.image.url }}" target="_blank"
                     class="detail-img-container d-flex align-items-center justify-content-center">
-                    <img src="{{ product.image.url }}" class="product-img p-1 img-fluid"
+                    <img src="{{ product.image.url }}" class="product-img-detail p-1 img-fluid"
                         alt="{{ product.manufacturer }} {{ product.model }}">
                 </a>
                 {% else %}
                 <a href="{{ MEDIA_URL }}no-image.png" target="_blank"
                     class="detail-img-container d-flex align-items-center justify-content-center">
-                    <img src="{{ MEDIA_URL }}no-image.png" class="product-img p-1 img-fluid"
+                    <img src="{{ MEDIA_URL }}no-image.png" class="product-img-detail p-1 img-fluid"
                         alt="{{ product.manufacturer }} {{ product.model }}">
                 </a>
                 {% endif %}
@@ -35,11 +35,11 @@
                     <h6>Manufacturer: {{ product.manufacturer }}</h6>
                     <h6>Model: {{ product.model }}</h6>
                     {% if product.category == 'case' %}
-                    <h6>Max motherboard size: {{ product.mobo_sizes }}</h6>
+                    <h6>Max motherboard size: {{ product.get_mobo_sizes_display }}</h6>
                     {% elif product.category == 'motherboard' %}
                     <h6>Motherboard size: {{ product.size }}</h6>
                     <h6>CPU socket: {{ product.socket }}</h6>
-                    <h6>RAM type: {{ product.ram_type }}</h6>
+                    <h6>RAM type: {{ product.get_ram_type_display }}</h6>
                     {% endif %}
                 </div>
             </div>
@@ -107,14 +107,41 @@
                 </form>
                 {% if request.user.is_superuser %}
                 <hr>
-                <a href="{% url 'admin_edit_product' category=product.category id=product.id operation='edit' %}"
-                    class="btn btn-warning">Edit
-                    product</a>
-                <form action="{% url 'admin_edit_product' category=product.category id=product.id operation='delete' %}"
-                    method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                <div class="row d-flex">
+                    <div class="col-6">
+                        <a href="{% url 'admin_edit_product' category=product.category id=product.id operation='edit' %}"
+                            class="btn btn-warning">Edit
+                            product</a>
+                    </div>
+                    <div class="col-6 justify-content-end text-end">
+                        <form
+                            action="{% url 'admin_edit_product' category=product.category id=product.id operation='delete' %}"
+                            method="POST" id="deleteForm">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-danger" id="deleteButton" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Delete Item Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete product {{ product.manufacturer }} {{ product.model }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="submitButton">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -126,4 +153,9 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+<script type="text/javascript">
+    $('#submitButton').click(function() {
+        $('#deleteForm').submit();
+    })
+</script>
 {% endblock %}

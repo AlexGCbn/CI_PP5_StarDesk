@@ -42,8 +42,8 @@
     <title>StarDesk {% block extra_title %}{% endblock %}</title>
 </head>
 
-<body>
-    <header class="container-fuild fixed-top" id="nav-element">
+<body class="d-flex flex-column min-vh-100">
+    <header class="container-fuild fixed-top px-0" id="nav-element">
         <!-- <div class="container-fuild-fixed-top"> -->
         <div class="row d-none d-lg-flex m-0 p-0 navigation-container" id="topnav">
             <!-- Free delivery banner -->
@@ -162,6 +162,59 @@
 
     {% block content %}
     {% endblock %}
+    <!-- Footer -->
+    <footer class="footer mt-auto">
+        <div class="footer-container m-0">
+            <div class="row d-flex justify-content-center text-center pt-2">
+                <div class="col-12 col-md-2">
+                    <ul class="list-unstyled">
+                        <li>
+                            <p><strong>Store</strong></p>
+                        </li>
+                        <li><a href="{% url 'products' %}">Products</a></li>
+                        <li><a href="{% url 'products' %}?category=case">Cases</a></li>
+                        <li><a href="{% url 'products' %}?category=motherboard">Motherboards</a></li>
+                        <li><a href="{% url 'products' %}?category=cpu">CPUs</a></li>
+                        <li><a href="{% url 'products' %}?category=gpu">GPUs</a></li>
+                        <li><a href="{% url 'products' %}?category=ram">RAM</a></li>
+                        <li><a href="{% url 'products' %}?category=psu">PSUs</a></li>
+                        <li><a href="{% url 'products' %}?category=storage">Storage</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-2">
+                    <ul class="list-unstyled">
+                        <li>
+                            <p><strong>Company</strong></p>
+                        </li>
+                        <li><a href="">About us</a></li>
+                        <li><a href="{% url 'account_signup' %}">Register</a></li>
+                        <li><a href="{% url 'account_login' %}">Sign in</a></li>
+                        <li><a href="{% url 'profile_view' %}">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-2">
+                    <p><strong>StarDesk</strong></p>
+                    <p>Thank you for visiting our website. You are awesome!</p>
+                </div>
+            </div>
+            <div class="row social-row justify-content-center text-center">
+                <div class="col-12 px-0 mx-0">
+                    <ul class="list-unstyled m-0">
+                        <li class="list-inline-item">
+                            <a href=""><i class="fa-brands fa-facebook-square fa-xl"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href=""><i class="fa-brands fa-twitter-square fa-xl"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href=""><i class="fa-brands fa-instagram-square fa-xl"></i></a>
+                        </li>
+                    </ul>
+                    <p class="text-muted">© 2022 StarDesk - All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     <script type="text/javascript">

@@ -9,3 +9,4 @@ class IndexView(View):
         """ A view to return index page """
         template = 'home/index.html'
         return render(request, template)
+

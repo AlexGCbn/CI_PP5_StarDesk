@@ -147,11 +147,19 @@ i {
 }
 
 .go-top-button {
+    background-color: #fff;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     height: 50px;
     width: 50px;
+    border: 2px solid #06283D;
+    border-radius: 15px;
 }
 
+
 .go-top-link > i {
+    text-decoration: underline;
     font-size: 1.8rem;
     height: 100%;
     width: 50px;

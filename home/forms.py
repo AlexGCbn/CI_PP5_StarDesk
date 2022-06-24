@@ -6,8 +6,7 @@ class DealCaseForm(forms.ModelForm):
 
     class Meta:
         model = DealCase
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -25,8 +24,7 @@ class DealMotherboardForm(forms.ModelForm):
 
     class Meta:
         model = DealMotherboard
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         widgets = {
             'deal_ends': forms.widgets.DateTimeInput(attrs={'type': 'date'})
@@ -40,8 +38,7 @@ class DealCpuForm(forms.ModelForm):
 
     class Meta:
         model = DealCpu
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -59,8 +56,7 @@ class DealGpuForm(forms.ModelForm):
 
     class Meta:
         model = DealGpu
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -78,8 +74,7 @@ class DealRamForm(forms.ModelForm):
 
     class Meta:
         model = DealRam
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -97,8 +92,7 @@ class DealPsuForm(forms.ModelForm):
 
     class Meta:
         model = DealPsu
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -116,8 +110,7 @@ class DealStorageForm(forms.ModelForm):
 
     class Meta:
         model = DealStorage
-        readonly_fields = ('product', )
-        exclude = ('price_was', )
+        fields = ('price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,

@@ -1,20 +1,21 @@
 from django.db import models
 from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 
+import datetime
+
 
 class DealProduct(models.Model):
     """Main product deal class"""
-    price_was = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     price_new = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     deal_ends = models.DateField(null=False)
 
     def __str__(self):
         return f'{self.product.model} reduced to {self.price_new}'
 
-    def update_price_was(self):
-        """Update price_was on object creation"""
-        self.price_was = self.product.price
-        self.save()
+    def get_days_remaining(self):
+        """Return deal days remaining"""
+        days_remaining = self.deal_ends - datetime.date.today()
+        return days_remaining.days
 
     class Meta:
         abstract = True

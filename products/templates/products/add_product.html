@@ -81,16 +81,16 @@
 {% block postloadjs %}
 <script type="text/javascript">
     $(document).ready(function() {
-        var forms = $('.add-form');
+        let forms = $('.add-form');
         forms.splice(0,1);
         forms.hide();
     })
     $('#id_add_product_control').change(function() {
-        var forms = $('.add-form');
+        let forms = $('.add-form');
         forms.hide();
-        var selector = $(this);
-        var currentSelection = selector.val();
-        var formSelection = `#${currentSelection}-add-form`;
+        let selector = $(this);
+        let currentSelection = selector.val();
+        let formSelection = `#${currentSelection}-add-form`;
         $(`${formSelection}`).show();
     })
 </script>

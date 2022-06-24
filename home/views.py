@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views import View
 from django.contrib import messages
 from products.models import (
@@ -8,14 +8,17 @@ from products.models import (
 )
 from .models import (
     DealCase, DealMotherboard,
-    DealCpu, DealGpu, DealRam,
-    DealPsu, DealStorage
+    DealCpu, DealGpu,
+    DealRam, DealPsu,
+    DealStorage
 )
 from .forms import (
     DealCaseForm, DealMotherboardForm,
     DealCpuForm, DealGpuForm, DealRamForm,
     DealPsuForm, DealStorageForm
 )
+
+import datetime
 
 
 class IndexView(View):
@@ -24,7 +27,23 @@ class IndexView(View):
     def get(self, request):
         """ A view to return index page """
         template = 'home/index.html'
-        return render(request, template)
+        query_case = DealCase.objects.filter(deal_ends__gte=datetime.date.today())
+        query_motherboard = DealMotherboard.objects.filter(deal_ends__gte=datetime.date.today())
+        query_cpu = DealCpu.objects.filter(deal_ends__gte=datetime.date.today())
+        query_gpu = DealGpu.objects.filter(deal_ends__gte=datetime.date.today())
+        query_ram = DealRam.objects.filter(deal_ends__gte=datetime.date.today())
+        query_psu = DealPsu.objects.filter(deal_ends__gte=datetime.date.today())
+        query_storage = DealStorage.objects.filter(deal_ends__gte=datetime.date.today())
+        context = {
+            'deals_case': query_case,
+            'deals_motherboard': query_motherboard,
+            'deals_cpu': query_cpu,
+            'deals_gpu': query_gpu,
+            'deals_ram': query_ram,
+            'deals_psu': query_psu,
+            'deals_storage': query_storage,
+        }
+        return render(request, template, context)
 
 
 class AdminAddDeal(View):

@@ -6,7 +6,7 @@ class DealCaseForm(forms.ModelForm):
 
     class Meta:
         model = DealCase
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -24,7 +24,7 @@ class DealMotherboardForm(forms.ModelForm):
 
     class Meta:
         model = DealMotherboard
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         widgets = {
             'deal_ends': forms.widgets.DateTimeInput(attrs={'type': 'date'})
@@ -38,7 +38,7 @@ class DealCpuForm(forms.ModelForm):
 
     class Meta:
         model = DealCpu
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -56,7 +56,7 @@ class DealGpuForm(forms.ModelForm):
 
     class Meta:
         model = DealGpu
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -74,7 +74,7 @@ class DealRamForm(forms.ModelForm):
 
     class Meta:
         model = DealRam
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -92,7 +92,7 @@ class DealPsuForm(forms.ModelForm):
 
     class Meta:
         model = DealPsu
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,
@@ -110,7 +110,7 @@ class DealStorageForm(forms.ModelForm):
 
     class Meta:
         model = DealStorage
-        fields = ('price_new', 'deal_ends')
+        fields = ('product', 'price_new', 'deal_ends')
 
         field_classes = {
             'deal_ends': forms.DateTimeField,

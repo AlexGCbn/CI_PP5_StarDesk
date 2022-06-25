@@ -14,7 +14,7 @@ class DealProduct(models.Model):
 
     def get_days_remaining(self):
         """Return deal days remaining"""
-        days_remaining = self.deal_ends - datetime.date.today()
+        days_remaining = self.deal_ends - datetime.date.today() + datetime.timedelta(days=1)
         return days_remaining.days
 
     class Meta:

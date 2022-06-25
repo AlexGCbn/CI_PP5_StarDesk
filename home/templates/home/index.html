@@ -22,100 +22,169 @@
     <div class="row">
         {% for deal in deals_case %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
         </div>
         {% endfor %}
         {% for deal in deals_motherboard %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
         {% for deal in deals_cpu %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
         {% for deal in deals_gpu %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
         {% for deal in deals_ram %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
         {% for deal in deals_psu %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
         {% for deal in deals_storage %}
         <div class="card-container col-6 col-md-3 m-2">
-            <div class="card bg-dark text-white deals-card">
-                <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
-                    alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
-                <div class="card-img-overlay text-center">
-                    <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }} {{ deal.product.model }}</h5>
-                    <h5 class="card-title card-text-bg mb-0 p-2"><span class="old-price">{{deal.product.price }}</span> {{ deal.price_new }}</h5>
+            <a href="{% url 'product_details' deal.product.category deal.product.id %}">
+                <div class="card bg-dark text-white deals-card">
+                    {% if deal.product.image %}
+                    <img src="{{ deal.product.image.url }}" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}no-image.png" class="deal-img img-fluid p-1"
+                        alt="{{ deal.product.manufacturer }} {{ deal.product.model }}">
+                    {% endif %}
+                    <div class="card-img-overlay text-center">
+                        <h5 class="card-title card-text-bg mb-0 mt-1 p-2">{{ deal.product.manufacturer }}
+                            {{ deal.product.model }}</h5>
+                        <h5 class="card-title card-text-bg mb-0 p-2"><span
+                                class="old-price">{{deal.product.price }}</span>
+                            {{ deal.price_new }}</h5>
 
-                    <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                        <p class="card-text card-text-bg p-2">Days remaining: {{ deal.get_days_remaining }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
     </div>

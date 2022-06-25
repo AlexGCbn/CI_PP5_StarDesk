@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 
 RATING = (
-    (1, 'Very Dissatisfied'),
-    (2, 'Dissatisfied'),
-    (3, 'Neutral'),
+    (5, 'Very Satisfied'),
     (4, 'Satisfied'),
-    (5, 'Very Satisfied')
+    (3, 'Neutral'),
+    (2, 'Dissatisfied'),
+    (1, 'Very Dissatisfied'),
 )
 
 

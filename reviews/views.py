@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import View
 from django.contrib import messages
+from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
+from .forms import (
+    CaseReviewForm, MotherboardReviewForm,
+    CpuReviewForm, GpuReviewForm,
+    RamReviewForm, PsuReviewForm,
+    StorageReviewForm
+)
 
 
 class AddReview(View):
@@ -29,11 +36,13 @@ class AddReview(View):
         elif kwargs['category'] == 'storage':
             product = Storage.objects.get(id=kwargs['id'])
             form = StorageReviewForm(request.POST)
+        new_review = form.save(commit=False)
         if form.is_valid():
-            form.product = product
+            new_review.product = product
+            new_review.user = request.user
             form.save()
             messages.success(request, 'Review added successfully!')
         else: 
             messages.error(request, 'There was an error. Please try again.')
 
-        return redirect(reverse('product_details', args={'category': product.category, 'id': product.id}))
+        return redirect(reverse('product_details', args=[product.category, product.id]))

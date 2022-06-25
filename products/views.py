@@ -8,6 +8,11 @@ from reviews.forms import (
     RamReviewForm, PsuReviewForm,
     StorageReviewForm
 )
+from reviews.models import (
+    CaseReview, MotherboardReview,
+    CpuReview, GpuReview, RamReview,
+    PsuReview, StorageReview
+)
 from home.models import (
     DealCase, DealMotherboard,
     DealCpu, DealGpu, DealRam,
@@ -190,6 +195,7 @@ class ProductDetails(View):
         if category == 'case':
             product = Case.objects.get(id=id)
             form = CaseReviewForm(request.POST)
+            reviews = CaseReview.objects.filter(product=product)
             try:
                 deal = DealCase.objects.filter(product=product)[0]
             except IndexError:
@@ -197,6 +203,7 @@ class ProductDetails(View):
         elif category == 'motherboard':
             product = Motherboard.objects.get(id=id)
             form = MotherboardReviewForm(request.POST)
+            reviews = MotherboardReview.objects.filter(product=product)
             try:
                 deal = DealMotherboard.objects.filter(product=product)[0]
             except IndexError:
@@ -204,6 +211,7 @@ class ProductDetails(View):
         elif category == 'cpu':
             product = Cpu.objects.get(id=id)
             form = CpuReviewForm(request.POST)
+            reviews = CpuReview.objects.filter(product=product)
             try:
                 deal = DealCpu.objects.filter(product=product)[0]
             except IndexError:
@@ -211,6 +219,7 @@ class ProductDetails(View):
         elif category == 'gpu':
             product = Gpu.objects.get(id=id)
             form = GpuReviewForm(request.POST)
+            reviews = GpuReview.objects.filter(product=product)
             try:
                 deal = DealGpu.objects.filter(product=product)[0]
             except IndexError:
@@ -218,6 +227,7 @@ class ProductDetails(View):
         elif category == 'ram':
             product = Ram.objects.get(id=id)
             form = RamReviewForm(request.POST)
+            reviews = RamReview.objects.filter(product=product)
             try:
                 deal = DealRam.objects.filter(product=product)[0]
             except IndexError:
@@ -225,6 +235,7 @@ class ProductDetails(View):
         elif category == 'psu':
             product = Psu.objects.get(id=id)
             form = PsuReviewForm(request.POST)
+            reviews = PsuReview.objects.filter(product=product)
             try:
                 deal = DealPsu.objects.filter(product=product)[0]
             except IndexError:
@@ -232,16 +243,23 @@ class ProductDetails(View):
         elif category == 'storage':
             product = Storage.objects.get(id=id)
             form = StorageReviewForm(request.POST)
+            reviews = StorageReview.objects.filter(product=product)
             try:
                 deal = DealStorage.objects.filter(product=product)[0]
             except IndexError:
                 deal = []
+
+        user_has_reviewed = False
+        for review in reviews:
+            if request.user == review.user:
+                user_has_reviewed = True
 
         template = 'products/product_details.html'
         context = {
             'product': product,
             'form': form,
             'deal': deal,
+            'user_has_reviewed': user_has_reviewed,
         }
         return render(request, template, context)
 

@@ -8,6 +8,11 @@ from reviews.forms import (
     RamReviewForm, PsuReviewForm,
     StorageReviewForm
 )
+from home.models import (
+    DealCase, DealMotherboard,
+    DealCpu, DealGpu, DealRam,
+    DealPsu, DealStorage
+)
 from .forms import (
     CaseForm, MotherboardForm,
     CpuForm, GpuForm,
@@ -185,28 +190,58 @@ class ProductDetails(View):
         if category == 'case':
             product = Case.objects.get(id=id)
             form = CaseReviewForm(request.POST)
+            try:
+                deal = DealCase.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'motherboard':
             product = Motherboard.objects.get(id=id)
             form = MotherboardReviewForm(request.POST)
+            try:
+                deal = DealMotherboard.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'cpu':
             product = Cpu.objects.get(id=id)
             form = CpuReviewForm(request.POST)
+            try:
+                deal = DealCpu.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'gpu':
             product = Gpu.objects.get(id=id)
             form = GpuReviewForm(request.POST)
+            try:
+                deal = DealGpu.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'ram':
             product = Ram.objects.get(id=id)
             form = RamReviewForm(request.POST)
+            try:
+                deal = DealRam.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'psu':
             product = Psu.objects.get(id=id)
             form = PsuReviewForm(request.POST)
+            try:
+                deal = DealPsu.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
         elif category == 'storage':
             product = Storage.objects.get(id=id)
             form = StorageReviewForm(request.POST)
+            try:
+                deal = DealStorage.objects.filter(product=product)[0]
+            except IndexError:
+                deal = []
 
         template = 'products/product_details.html'
         context = {
-            'product': product
+            'product': product,
+            'form': form,
+            'deal': deal,
         }
         return render(request, template, context)
 

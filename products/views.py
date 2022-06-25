@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.views import View
+from reviews.forms import (
+    CaseReviewForm, MotherboardReviewForm,
+    CpuReviewForm, GpuReviewForm,
+    RamReviewForm, PsuReviewForm,
+    StorageReviewForm
+)
 from .forms import (
     CaseForm, MotherboardForm,
     CpuForm, GpuForm,
@@ -178,18 +184,25 @@ class ProductDetails(View):
         """ GET request for product details page """
         if category == 'case':
             product = Case.objects.get(id=id)
+            form = CaseReviewForm(request.POST)
         elif category == 'motherboard':
             product = Motherboard.objects.get(id=id)
+            form = MotherboardReviewForm(request.POST)
         elif category == 'cpu':
             product = Cpu.objects.get(id=id)
+            form = CpuReviewForm(request.POST)
         elif category == 'gpu':
             product = Gpu.objects.get(id=id)
+            form = GpuReviewForm(request.POST)
         elif category == 'ram':
             product = Ram.objects.get(id=id)
+            form = RamReviewForm(request.POST)
         elif category == 'psu':
             product = Psu.objects.get(id=id)
+            form = PsuReviewForm(request.POST)
         elif category == 'storage':
             product = Storage.objects.get(id=id)
+            form = StorageReviewForm(request.POST)
 
         template = 'products/product_details.html'
         context = {

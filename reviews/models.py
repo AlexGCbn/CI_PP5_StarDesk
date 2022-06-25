@@ -16,6 +16,7 @@ class CaseReview(models.Model):
     product = models.ForeignKey(Case, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class MotherboardReview(models.Model):
@@ -23,6 +24,7 @@ class MotherboardReview(models.Model):
     product = models.ForeignKey(Motherboard, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class CpuReview(models.Model):
@@ -30,6 +32,7 @@ class CpuReview(models.Model):
     product = models.ForeignKey(Cpu, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class GpuReview(models.Model):
@@ -37,6 +40,7 @@ class GpuReview(models.Model):
     product = models.ForeignKey(Gpu, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class RamReview(models.Model):
@@ -44,6 +48,7 @@ class RamReview(models.Model):
     product = models.ForeignKey(Ram, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class PsuReview(models.Model):
@@ -51,6 +56,7 @@ class PsuReview(models.Model):
     product = models.ForeignKey(Psu, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)
 
 
 class StorageReview(models.Model):
@@ -58,3 +64,4 @@ class StorageReview(models.Model):
     product = models.ForeignKey(Storage, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(choices=RATING, default=3)
+    comment = models.TextField(max_length=500, null=True, blank=True)

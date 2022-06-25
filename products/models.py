@@ -7,14 +7,6 @@ MOBO_SIZES = (
     ('e_atx', 'EATX')
 )
 
-RATING = (
-    (1, 'Very Dissatisfied'),
-    (2, 'Dissatisfied'),
-    (3, 'Neutral'),
-    (4, 'Satisfied'),
-    (5, 'Very Satisfied')
-)
-
 CPU_SOCKETS = (
     ('AM4', 'AM4'),
     ('1700', '1700'),

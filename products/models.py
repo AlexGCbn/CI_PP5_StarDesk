@@ -37,6 +37,7 @@ PSU_CATEGORIES = (
     ('80plus_titanium', '80 PLUS Titanium')
 )
 
+
 class Product(models.Model):
     """Main product class"""
     model = models.CharField(max_length=254)
@@ -45,12 +46,24 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    total_ratings = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
 
+    def update_ratings(self, score):
+        """Update rating function"""
+        self.total_ratings += 1
+        if self.rating < score:
+            new_rating = self.rating + (score * (1/self.total_ratings))
+        else:
+            new_rating = self.rating - (score * (1/self.total_ratings))
+        self.rating = new_rating
+        self.save()
+
     class Meta:
         abstract = True
+
 
 class Case(Product):
     """ Case products model """

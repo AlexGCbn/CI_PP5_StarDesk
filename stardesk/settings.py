@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'reviews',
 ]
 
 SESSION_COOKIE_SECURE = True

@@ -111,3 +111,17 @@ class TestModels(TestCase):
         """Test Storage default values"""
         storage = Storage.objects.get(id=1)
         self.assertEqual(storage.category, 'storage')
+
+    def test_product_str(self):
+        """Test Product str function"""
+        product = Case.objects.get(id=1)
+        self.assertEqual(product.__str__(), 'test_manufacturer - test_model')
+
+    def test_product_update_rating(self):
+        """Test product update_ratings function"""
+        product = Case.objects.get(id=1)
+        self.assertIsNone(product.rating)
+        product.update_ratings(2, 9)
+        self.assertEqual(product.rating, 4.5)
+        product.update_ratings(0, 0)
+        self.assertIsNone(product.rating)

@@ -16,7 +16,6 @@ html {
 
 body {
     max-width: 100vw;
-    height: 100%;
     height: calc(100vh - 101px);
     color: #06283D;
     font-family: 'Ubuntu', sans-serif;
@@ -116,6 +115,7 @@ i {
 .overlay {
     height: 100%;
     width: 100%;
+    max-width: 100vw;
     top: 0;
     left: 0;
     position: fixed;
@@ -161,6 +161,7 @@ i {
     font-size: 1.8rem;
     height: 100%;
     width: 50px;
+    cursor: pointer;
 }
 
 .message-container {
@@ -179,7 +180,7 @@ i {
 }
 
 .footer-container {
-    width: 100vw;
+    max-width: 100vw;
     height: 100%;
 }
 

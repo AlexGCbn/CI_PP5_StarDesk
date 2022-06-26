@@ -186,7 +186,10 @@
             <hr>
             {% if reviews %}
             {% for review in reviews %}
-            {{ review }}
+            <h5>User {{ review.user }} reviewed:</h5>
+            <h6><i class="fa-solid fa-star"></i> {{ review.score }}</h6>
+            <p>{{ review.comment }}</p>
+            <hr>
             {% endfor %}
             {% endif %}
         </div>

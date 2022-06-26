@@ -257,7 +257,6 @@ class ProductDetails(View):
             total_score += review.score
         product.update_ratings(total_ratings, total_score)
 
-
         user_has_reviewed = False
         for review in reviews:
             if request.user == review.user:
@@ -269,6 +268,7 @@ class ProductDetails(View):
             'form': form,
             'deal': deal,
             'user_has_reviewed': user_has_reviewed,
+            'reviews': reviews,
         }
         return render(request, template, context)
 

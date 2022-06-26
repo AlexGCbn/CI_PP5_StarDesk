@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import View
 from django.contrib import messages
-from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
+from products.models import (
+    Case, Motherboard,
+    Cpu, Gpu, Ram,
+    Psu, Storage
+)
 from .forms import (
     CaseReviewForm, MotherboardReviewForm,
     CpuReviewForm, GpuReviewForm,
     RamReviewForm, PsuReviewForm,
     StorageReviewForm
+)
+from .models import (
+    CaseReview, MotherboardReview,
+    CpuReview, GpuReview, RamReview,
+    PsuReview, StorageReview
 )
 
 
@@ -40,7 +49,7 @@ class AddReview(View):
         if form.is_valid():
             new_review.product = product
             new_review.user = request.user
-            form.save()
+            new_review = form.save()
             messages.success(request, 'Review added successfully!')
         else: 
             messages.error(request, 'There was an error. Please try again.')

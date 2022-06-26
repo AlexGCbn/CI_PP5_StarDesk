@@ -38,19 +38,16 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    total_ratings = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.manufacturer} - {self.model}'
 
-    def update_ratings(self, score):
+    def update_ratings(self, total_ratings, total_score):
         """Update rating function"""
-        self.total_ratings += 1
-        if self.rating < score:
-            new_rating = self.rating + (score * (1/self.total_ratings))
+        if total_score > 0:
+            self.rating = total_score / total_ratings
         else:
-            new_rating = self.rating - (score * (1/self.total_ratings))
-        self.rating = new_rating
+            self.rating = None
         self.save()
 
     class Meta:

@@ -194,7 +194,7 @@ class ProductDetails(View):
         """ GET request for product details page """
         if category == 'case':
             product = Case.objects.get(id=id)
-            form = CaseReviewForm(request.POST)
+            form = CaseReviewForm()
             reviews = CaseReview.objects.filter(product=product)
             try:
                 deal = DealCase.objects.filter(product=product)[0]
@@ -202,7 +202,7 @@ class ProductDetails(View):
                 deal = []
         elif category == 'motherboard':
             product = Motherboard.objects.get(id=id)
-            form = MotherboardReviewForm(request.POST)
+            form = MotherboardReviewForm()
             reviews = MotherboardReview.objects.filter(product=product)
             try:
                 deal = DealMotherboard.objects.filter(product=product)[0]
@@ -210,7 +210,7 @@ class ProductDetails(View):
                 deal = []
         elif category == 'cpu':
             product = Cpu.objects.get(id=id)
-            form = CpuReviewForm(request.POST)
+            form = CpuReviewForm()
             reviews = CpuReview.objects.filter(product=product)
             try:
                 deal = DealCpu.objects.filter(product=product)[0]
@@ -218,7 +218,7 @@ class ProductDetails(View):
                 deal = []
         elif category == 'gpu':
             product = Gpu.objects.get(id=id)
-            form = GpuReviewForm(request.POST)
+            form = GpuReviewForm()
             reviews = GpuReview.objects.filter(product=product)
             try:
                 deal = DealGpu.objects.filter(product=product)[0]
@@ -226,7 +226,7 @@ class ProductDetails(View):
                 deal = []
         elif category == 'ram':
             product = Ram.objects.get(id=id)
-            form = RamReviewForm(request.POST)
+            form = RamReviewForm()
             reviews = RamReview.objects.filter(product=product)
             try:
                 deal = DealRam.objects.filter(product=product)[0]
@@ -234,7 +234,7 @@ class ProductDetails(View):
                 deal = []
         elif category == 'psu':
             product = Psu.objects.get(id=id)
-            form = PsuReviewForm(request.POST)
+            form = PsuReviewForm()
             reviews = PsuReview.objects.filter(product=product)
             try:
                 deal = DealPsu.objects.filter(product=product)[0]
@@ -242,12 +242,21 @@ class ProductDetails(View):
                 deal = []
         elif category == 'storage':
             product = Storage.objects.get(id=id)
-            form = StorageReviewForm(request.POST)
+            form = StorageReviewForm()
             reviews = StorageReview.objects.filter(product=product)
             try:
                 deal = DealStorage.objects.filter(product=product)[0]
             except IndexError:
                 deal = []
+
+        # Update product rating
+        total_ratings = 0
+        total_score = 0
+        for review in reviews:
+            total_ratings += 1
+            total_score += review.score
+        product.update_ratings(total_ratings, total_score)
+
 
         user_has_reviewed = False
         for review in reviews:

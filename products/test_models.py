@@ -5,7 +5,6 @@ from .models import (
     Cpu, Gpu, Ram,
     Psu, Storage
 )
-import datetime
 
 
 class TestModels(TestCase):

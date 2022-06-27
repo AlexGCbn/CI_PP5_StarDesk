@@ -212,6 +212,13 @@ i {
     color: red;
 }
 
+#hero-img {
+    max-width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 25%;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

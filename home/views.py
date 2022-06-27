@@ -115,3 +115,7 @@ class AdminAddDeal(View):
         else:
             messages.error(request, 'There was an error adding product.')
             return redirect('admin_add_product')
+
+def handler404(request, exception):
+    """Handle 404 error"""
+    return render(request, '404.html')

@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 import tempfile
 from django.contrib.auth.models import User
 from .models import (

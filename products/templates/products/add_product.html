@@ -84,7 +84,7 @@
         let forms = $('.add-form');
         forms.splice(0,1);
         forms.hide();
-    })
+    });
     $('#id_add_product_control').change(function() {
         let forms = $('.add-form');
         forms.hide();
@@ -92,6 +92,6 @@
         let currentSelection = selector.val();
         let formSelection = `#${currentSelection}-add-form`;
         $(`${formSelection}`).show();
-    })
+    });
 </script>
 {% endblock %}

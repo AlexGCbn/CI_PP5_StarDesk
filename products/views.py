@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
@@ -177,12 +178,19 @@ class AllProductsView(View):
             products = products.order_by(sort)
             current_sorting = f'{sortkey}_{direction}'
 
+        # Paginator
+        products = list(products)
+        paginator = Paginator(products, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         template = 'products/products.html'
         context = {
             'products': products,
             'search_term': query,
             'current_sorting': current_sorting,
             'category': category,
+            'page_obj': page_obj,
         }
         return render(request, template, context)
 

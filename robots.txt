@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /accounts/
+Sitemap: https://stardesk.herokuapp.com/sitemap.xml

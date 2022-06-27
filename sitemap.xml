@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://stardesk.herokuapp.com/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/login/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/bag/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=case</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=case&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=case&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=motherboard</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=motherboard&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=motherboard&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=cpu</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=cpu&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=cpu&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=gpu</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=gpu&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=gpu&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=ram</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=ram&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=ram&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=psu</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=psu&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=psu&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=storage</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=storage&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=storage&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/15/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/gpu/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/ram/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/psu/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/storage/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/login/?next=/profile/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/cpu/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/psu/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/cpu/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/ram/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/10/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/gpu/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?page=2</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?page=5</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/ram/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/ram/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/psu/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/7/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/7/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=case&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=case&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/6/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/case/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=motherboard&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=motherboard&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/6/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/8/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/motherboard/9/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=cpu&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=cpu&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/cpu/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/cpu/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/cpu/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=gpu&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=gpu&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/gpu/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/gpu/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/gpu/3/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=ram&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=ram&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/ram/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=psu&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=psu&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/psu/4/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/psu/5/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=storage&amp;sort=price&amp;direction=desc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?category=storage&amp;sort=rating&amp;direction=asc</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/storage/1/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/storage/2/</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/signup/?next=%2Fprofile%2F</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?page=1</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?page=3</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/products/?page=4</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://stardesk.herokuapp.com/accounts/login/?next=%2Fprofile%2F</loc>
+  <lastmod>2022-06-27T19:16:24+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>

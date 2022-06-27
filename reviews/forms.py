@@ -1,5 +1,10 @@
 from django import forms
-from .models import CaseReview, MotherboardReview, CpuReview, GpuReview, RamReview, PsuReview, StorageReview
+from .models import (
+    CaseReview, MotherboardReview,
+    CpuReview, GpuReview,
+    RamReview, PsuReview,
+    StorageReview
+)
 
 
 class CaseReviewForm(forms.ModelForm):

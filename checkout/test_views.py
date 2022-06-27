@@ -16,6 +16,7 @@ from .models import (
 )
 import datetime
 
+
 class TestViews(TestCase):
 
     def setUp(self):
@@ -62,34 +63,38 @@ class TestViews(TestCase):
             model='test_model',
             manufacturer='test_manufacturer',
             description='test_description',
-            price = 123,
+            price=123,
             speed=3200,
             capacity=16,
             type='ddr4',
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
         self.test_psu = Psu.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             wattage=700,
             e_category='80plus_gold',
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
         self.test_storage = Storage.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             capacity=500,
             speed=3500,
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
-        self.normal_user = User.objects.create(username='testuser', email='test@email.com')
+        self.normal_user = User.objects.create(
+            username='testuser', email='test@email.com'
+        )
         self.normal_user.set_password('test_password')
         self.normal_user.save()
-        self.admin = User.objects.create_superuser(username='testadmin', email='test@email.com')
+        self.admin = User.objects.create_superuser(
+            username='testadmin', email='test@email.com'
+        )
         self.admin.set_password('test_password')
         self.admin.save()
 
@@ -184,7 +189,9 @@ class TestViews(TestCase):
         )
         test_order.save()
         test_lineitem.save()
-        response = self.client.get(f'/checkout/checkout_success/{test_order.order_number}')
+        response = self.client.get(
+            f'/checkout/checkout_success/{test_order.order_number}'
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_cache_checkout_data(self):

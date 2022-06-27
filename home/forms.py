@@ -1,5 +1,9 @@
 from django import forms
-from .models import DealCase, DealMotherboard, DealCpu, DealGpu, DealRam, DealPsu, DealStorage
+from .models import (
+    DealCase, DealMotherboard,
+    DealCpu, DealGpu, DealRam,
+    DealPsu, DealStorage
+)
 
 
 class DealCaseForm(forms.ModelForm):

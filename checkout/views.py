@@ -1,5 +1,9 @@
 import json
-from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, reverse,
+    redirect, get_object_or_404,
+    HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.views import View
@@ -9,7 +13,12 @@ from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 from bag.contexts import bag_contents
 from profiles.forms import ProfileForm
 from profiles.models import UserProfile
-from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
+from .models import (
+    Order, OrderLineCase,
+    OrderLineCpu, OrderLineGpu,
+    OrderLineMotherboard, OrderLinePsu,
+    OrderLineRam, OrderLineStorage
+)
 from .forms import OrderForm
 
 
@@ -49,7 +58,9 @@ class CheckoutView(View):
         stripe.api_key = stripe_secret_key
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment"
+            )
             return redirect(reverse('products'))
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
@@ -74,7 +85,7 @@ class CheckoutView(View):
                     'street_address1': user_profile.profile_street_address1,
                     'street_address2': user_profile.profile_street_address2,
                 })
-        
+
         if not stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. \
                 Did you set it up in your environment?')
@@ -176,7 +187,7 @@ class CheckoutView(View):
                             quantity=quantity,
                         )
                         order_line_item.save()
-                    
+
                 except Exception as exception_error:
                     messages.error(request, f'Error: {exception_error}')
                     order.delete()
@@ -199,7 +210,9 @@ class CheckoutView(View):
                     profile_form.save()
             messages.success(request, f'Your order was successfully processed! \
                 Order number: {order.order_number}')
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]
+            ))
         else:
             messages.error(request, 'There was an error with your order form. \
                 Please check your form again.')
@@ -210,7 +223,7 @@ class CheckoutSuccessView(View):
     Checkout success class view
     """
     template = 'checkout/checkout_success.html'
-    
+
     def get(self, request, order_number, *args, **kwargs):
         """
         GET request view for checkout success
@@ -227,7 +240,8 @@ class CheckoutSuccessView(View):
             order.lineitem_gpu,
             order.lineitem_ram,
             order.lineitem_psu,
-            order.lineitem_storage):
+            order.lineitem_storage
+        ):
             try:
                 item_object = item.get()
                 product_list.append(item_object)

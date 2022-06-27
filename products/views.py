@@ -49,7 +49,9 @@ class AllProductsView(View):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria.")
+                messages.error(
+                    request, "You didn't enter any search criteria."
+                )
                 return redirect(reverse('products'))
             queries = (
                 Q(model__icontains=query) |
@@ -296,7 +298,8 @@ class ProductDetails(View):
 
         product_name = request.POST.get('product_friendly_name')
         request.session['bag'] = bag
-        messages.success(request, f'Added {quantity}x {product_name} to your bag.')
+        messages.success(request, f'Added {quantity}x \
+            {product_name} to your bag.')
         return redirect(redirect_url)
 
 
@@ -357,11 +360,13 @@ class AdminProductView(View):
             form = PsuForm(request.POST, request.FILES)
         elif category == 'storage':
             form = StorageForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             new_product = form.save()
             messages.success(request, 'Product added successfully!')
-            return redirect('product_details', id=new_product.id, category=category)
+            return redirect(
+                'product_details', id=new_product.id, category=category
+            )
         else:
             messages.error(request, 'There was an error adding product.')
             return redirect('admin_add_product')
@@ -432,23 +437,41 @@ class ManageProduct(View):
             product = Storage.objects.get(id=kwargs['id'])
         if kwargs['operation'] == 'edit':
             if kwargs['category'] == 'case':
-                form = CaseForm(request.POST, request.FILES, instance=product)
+                form = CaseForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'motherboard':
-                form = MotherboardForm(request.POST, request.FILES, instance=product)
+                form = MotherboardForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'cpu':
-                form = CpuForm(request.POST, request.FILES, instance=product)
+                form = CpuForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'gpu':
-                form = GpuForm(request.POST, request.FILES, instance=product)
+                form = GpuForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'ram':
-                form = RamForm(request.POST, request.FILES, instance=product)
+                form = RamForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'psu':
-                form = PsuForm(request.POST, request.FILES, instance=product)
+                form = PsuForm(
+                    request.POST, request.FILES, instance=product
+                )
             elif kwargs['category'] == 'storage':
-                form = StorageForm(request.POST, request.FILES, instance=product)
+                form = StorageForm(
+                    request.POST, request.FILES, instance=product
+                )
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Product edited successfully!')
-                return redirect('product_details', id=kwargs['id'], category=kwargs['category'])
+                return redirect(
+                    'product_details',
+                    id=kwargs['id'],
+                    category=kwargs['category']
+                )
         elif kwargs['operation'] == 'delete':
             product.delete()
             return redirect('products')

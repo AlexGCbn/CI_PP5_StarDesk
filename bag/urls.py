@@ -3,5 +3,9 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.BagView.as_view(), name='view_bag'),
+    path(
+        '',
+        views.BagView.as_view(),
+        name='view_bag'
+    ),
 ]

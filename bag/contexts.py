@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
 
+
 def bag_contents(request):
 
     bag_items = []

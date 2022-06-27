@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Order, OrderLineCase, OrderLineCpu, OrderLineGpu, OrderLineMotherboard, OrderLinePsu, OrderLineRam, OrderLineStorage
+from .models import (
+    Order, OrderLineCase,
+    OrderLineCpu, OrderLineGpu,
+    OrderLineMotherboard, OrderLinePsu,
+    OrderLineRam, OrderLineStorage
+)
 
 
 class OrderLineCaseAdminInline(admin.TabularInline):

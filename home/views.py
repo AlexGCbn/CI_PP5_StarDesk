@@ -27,13 +27,27 @@ class IndexView(View):
     def get(self, request):
         """ A view to return index page """
         template = 'home/index.html'
-        query_case = DealCase.objects.filter(deal_ends__gte=datetime.date.today())
-        query_motherboard = DealMotherboard.objects.filter(deal_ends__gte=datetime.date.today())
-        query_cpu = DealCpu.objects.filter(deal_ends__gte=datetime.date.today())
-        query_gpu = DealGpu.objects.filter(deal_ends__gte=datetime.date.today())
-        query_ram = DealRam.objects.filter(deal_ends__gte=datetime.date.today())
-        query_psu = DealPsu.objects.filter(deal_ends__gte=datetime.date.today())
-        query_storage = DealStorage.objects.filter(deal_ends__gte=datetime.date.today())
+        query_case = DealCase.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_motherboard = DealMotherboard.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_cpu = DealCpu.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_gpu = DealGpu.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_ram = DealRam.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_psu = DealPsu.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
+        query_storage = DealStorage.objects.filter(
+            deal_ends__gte=datetime.date.today()
+        )
         context = {
             'deals_case': query_case,
             'deals_motherboard': query_motherboard,
@@ -84,10 +98,10 @@ class AdminAddDeal(View):
             'category': product.category,
         }
         return render(request, template, context)
-    
+
     def post(self, request, *args, **kwargs):
         """POST request handling to add new deal"""
-        
+
         if not request.user.is_superuser:
             messages.error(request, 'Access denied!')
             return redirect(reverse('products'))
@@ -107,14 +121,17 @@ class AdminAddDeal(View):
             form = DealPsuForm(request.POST, request.FILES)
         elif category == 'storage':
             form = DealStorageForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             new_deal = form.save()
             messages.success(request, 'Deal added successfully!')
-            return redirect('product_details', id=new_deal.product.id, category=category)
+            return redirect(
+                'product_details', id=new_deal.product.id, category=category
+            )
         else:
             messages.error(request, 'There was an error adding product.')
             return redirect('admin_add_product')
+
 
 def handler404(request, exception):
     """Handle 404 error"""

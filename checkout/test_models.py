@@ -14,6 +14,7 @@ from .models import (
 )
 import datetime
 
+
 class TestViews(TestCase):
 
     def setUp(self):
@@ -38,13 +39,16 @@ class TestViews(TestCase):
             ram_type='ddr4',
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
-        self.normal_user = User.objects.create(username='testuser', email='test@email.com')
+        self.normal_user = User.objects.create(
+            username='testuser', email='test@email.com'
+        )
         self.normal_user.set_password('test_password')
         self.normal_user.save()
-        self.admin = User.objects.create_superuser(username='testadmin', email='test@email.com')
+        self.admin = User.objects.create_superuser(
+            username='testadmin', email='test@email.com'
+        )
         self.admin.set_password('test_password')
         self.admin.save()
-
 
     def test_uuid_and_str(self):
         """Test Order UUID creation"""
@@ -69,11 +73,13 @@ class TestViews(TestCase):
         order_str = str(test_order)
         self.assertEqual(order_str, test_order.order_number)
         lineitem_str = str(test_lineitem)
-        self.assertEqual(lineitem_str, 'Order item test_manufacturer test_model')
+        self.assertEqual(
+            lineitem_str, 'Order item test_manufacturer test_model'
+        )
 
     def test_delivery_threshold(self):
         """Test delivery threshold for orders"""
-        
+
         test_order = Order.objects.create(
             user=self.normal_user,
             full_name='test_name',

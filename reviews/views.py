@@ -51,7 +51,9 @@ class AddReview(View):
             new_review.user = request.user
             new_review = form.save()
             messages.success(request, 'Review added successfully!')
-        else: 
+        else:
             messages.error(request, 'There was an error. Please try again.')
 
-        return redirect(reverse('product_details', args=[product.category, product.id]))
+        return redirect(reverse(
+            'product_details', args=[product.category, product.id]
+        ))

@@ -49,31 +49,31 @@ class TestModels(TestCase):
             model='test_model',
             manufacturer='test_manufacturer',
             description='test_description',
-            price = 123,
+            price=123,
             speed=3200,
             capacity=16,
             type='ddr4',
         )
         test_psu = Psu.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             wattage=700,
             e_category='80plus_gold',
         )
         test_storage = Storage.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             capacity=500,
             speed=3500,
         )
         test_user = User.objects.create_user(
-            username = 'test_user',
-            email = 'test_email@email.com',
-            password = 'test_password',
+            username='test_user',
+            email='test_email@email.com',
+            password='test_password',
         )
 
     def test_case_defaults(self):

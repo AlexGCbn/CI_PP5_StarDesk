@@ -36,7 +36,8 @@ class ProfileView(View):
         form = ProfileForm(request.POST, instance=current_profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile information updated successfully!')
+            messages.success(request, 'Profile information \
+                updated successfully!')
         return redirect('profile_view')
 
 
@@ -59,7 +60,8 @@ class OrderHistoryView(View):
             order.lineitem_gpu,
             order.lineitem_ram,
             order.lineitem_psu,
-            order.lineitem_storage):
+            order.lineitem_storage,
+        ):
             try:
                 item_object = item.get()
                 product_list.append(item_object)
@@ -71,4 +73,3 @@ class OrderHistoryView(View):
         }
 
         return render(request, template, context)
-

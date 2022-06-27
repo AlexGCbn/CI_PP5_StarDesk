@@ -6,7 +6,9 @@ import datetime
 
 class DealProduct(models.Model):
     """Main product deal class"""
-    price_new = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    price_new = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0
+    )
     deal_ends = models.DateField(null=False)
 
     def __str__(self):
@@ -14,7 +16,9 @@ class DealProduct(models.Model):
 
     def get_days_remaining(self):
         """Return deal days remaining"""
-        days_remaining = self.deal_ends - datetime.date.today() + datetime.timedelta(days=1)
+        days_remaining = (
+            self.deal_ends - datetime.date.today() + datetime.timedelta(days=1)
+        )
         return days_remaining.days
 
     class Meta:
@@ -23,34 +27,48 @@ class DealProduct(models.Model):
 
 class DealCase(DealProduct):
     """DealCase submodel to make Case deals/offers"""
-    product = models.ForeignKey(Case, on_delete=models.CASCADE, related_name='case_deal')
+    product = models.ForeignKey(
+        Case, on_delete=models.CASCADE, related_name='case_deal'
+    )
 
 
 class DealMotherboard(DealProduct):
     """DealMotherboard submodel to make Case deals/offers"""
-    product = models.ForeignKey(Motherboard, on_delete=models.CASCADE, related_name='motherboard_deal')
+    product = models.ForeignKey(
+        Motherboard, on_delete=models.CASCADE, related_name='motherboard_deal'
+    )
 
 
 class DealCpu(DealProduct):
     """DealCpu submodel to make Case deals/offers"""
-    product = models.ForeignKey(Cpu, on_delete=models.CASCADE, related_name='cpu_deal')
+    product = models.ForeignKey(
+        Cpu, on_delete=models.CASCADE, related_name='cpu_deal'
+    )
 
 
 class DealGpu(DealProduct):
     """DealGpu submodel to make Case deals/offers"""
-    product = models.ForeignKey(Gpu, on_delete=models.CASCADE, related_name='gpu_deal')
+    product = models.ForeignKey(
+        Gpu, on_delete=models.CASCADE, related_name='gpu_deal'
+    )
 
 
 class DealRam(DealProduct):
     """DealRam submodel to make Case deals/offers"""
-    product = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='ram_deal')
+    product = models.ForeignKey(
+        Ram, on_delete=models.CASCADE, related_name='ram_deal'
+    )
 
 
 class DealPsu(DealProduct):
     """DealPsu submodel to make Case deals/offers"""
-    product = models.ForeignKey(Psu, on_delete=models.CASCADE, related_name='psu_deal')
+    product = models.ForeignKey(
+        Psu, on_delete=models.CASCADE, related_name='psu_deal'
+    )
 
 
 class DealStorage(DealProduct):
     """DealStorage submodel to make Case deals/offers"""
-    product = models.ForeignKey(Storage, on_delete=models.CASCADE, related_name='storage_deal')
+    product = models.ForeignKey(
+        Storage, on_delete=models.CASCADE, related_name='storage_deal'
+    )

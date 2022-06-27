@@ -14,6 +14,7 @@ from .forms import (
 from reviews.models import CaseReview
 import datetime
 
+
 # Image solution found here:
 # https://stackoverflow.com/a/32814129/17822071
 
@@ -63,34 +64,40 @@ class TestViews(TestCase):
             model='test_model',
             manufacturer='test_manufacturer',
             description='test_description',
-            price = 123,
+            price=123,
             speed=3200,
             capacity=16,
             type='ddr4',
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
         self.test_psu = Psu.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             wattage=700,
             e_category='80plus_gold',
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
         self.test_storage = Storage.objects.create(
-            model = 'test_model',
-            manufacturer = 'test_manufacturer',
-            description = 'test_description',
-            price = 123,
+            model='test_model',
+            manufacturer='test_manufacturer',
+            description='test_description',
+            price=123,
             capacity=500,
             speed=3500,
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name
         )
-        self.normal_user = User.objects.create(username='testuser', email='test@email.com')
+        self.normal_user = User.objects.create(
+            username='testuser',
+            email='test@email.com'
+        )
         self.normal_user.set_password('test_password')
         self.normal_user.save()
-        self.admin = User.objects.create_superuser(username='testadmin', email='test@email.com')
+        self.admin = User.objects.create_superuser(
+            username='testadmin',
+            email='test@email.com'
+        )
         self.admin.set_password('test_password')
         self.admin.save()
 
@@ -192,9 +199,15 @@ class TestViews(TestCase):
         session['bag'] = {}
         session['bag']['case_1'] = 1
         session.save()
-        response = self.client.post(f'/products/case/1/', {'quantity': 2, 'redirect_url': '/products/case/1/'})
+        response = self.client.post('/products/case/1/', {
+            'quantity': 2,
+            'redirect_url': '/products/case/1/'
+        })
         self.assertRedirects(response, '/products/case/1/')
-        response = self.client.post(f'/products/motherboard/1/', {'quantity': 2, 'redirect_url': '/products/motherboard/1/'})
+        response = self.client.post('/products/motherboard/1/', {
+            'quantity': 2,
+            'redirect_url': '/products/motherboard/1/'
+            })
         self.assertRedirects(response, '/products/motherboard/1/')
 
     def test_admin_add_product_get(self):
@@ -219,7 +232,7 @@ class TestViews(TestCase):
             'price': 123,
             'mobo_sizes': 'atx',
         }, follow=True)
-        
+
         new_product = Case.objects.get(id=2)
         self.assertEqual(new_product.model, 'test_model2')
 
@@ -324,34 +337,58 @@ class TestViews(TestCase):
     def test_admin_manage_product_get(self):
         """Test admin manage case GET request"""
         self.client.login(username='testadmin', password='test_password')
-        response = self.client.get('/products/case/1/edit/', {'category': 'case', 'id': 1}, follow=True)
+        response = self.client.get('/products/case/1/edit/', {
+            'category': 'case',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
 
         self.client.logout()
         self.client.login(username='testuser', password='test_password')
-        response = self.client.get('/products/case/1/edit/', {'category': 'case', 'id': 1}, follow=True)
+        response = self.client.get('/products/case/1/edit/', {
+            'category': 'case',
+            'id': 1
+        }, follow=True)
         self.assertRedirects(response, '/products/')
 
     def test_admin_manage_product_get_rest(self):
         """Test admin manage products GET request"""
         self.client.login(username='testadmin', password='test_password')
-        response = self.client.get('/products/motherboard/1/edit/', {'category': 'motherboard', 'id': 1}, follow=True)
+        response = self.client.get('/products/motherboard/1/edit/', {
+            'category': 'motherboard',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
-        response = self.client.get('/products/cpu/1/edit/', {'category': 'cpu', 'id': 1}, follow=True)
+        response = self.client.get('/products/cpu/1/edit/', {
+            'category': 'cpu',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
-        response = self.client.get('/products/gpu/1/edit/', {'category': 'gpu', 'id': 1}, follow=True)
+        response = self.client.get('/products/gpu/1/edit/', {
+            'category': 'gpu',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
-        response = self.client.get('/products/ram/1/edit/', {'category': 'ram', 'id': 1}, follow=True)
+        response = self.client.get('/products/ram/1/edit/', {
+            'category': 'ram',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
-        response = self.client.get('/products/psu/1/edit/', {'category': 'psu', 'id': 1}, follow=True)
+        response = self.client.get('/products/psu/1/edit/', {
+            'category': 'psu',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
-        response = self.client.get('/products/storage/1/edit/', {'category': 'storage', 'id': 1}, follow=True)
+        response = self.client.get('/products/storage/1/edit/', {
+            'category': 'storage',
+            'id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/edit_product.html')
 
@@ -388,7 +425,10 @@ class TestViews(TestCase):
 
         self.client.logout()
         self.client.login(username='testadmin', password='test_password')
-        response = self.client.post('/products/case/1/delete/', {'category': 'case', 'id': 1,}, follow=True)
+        response = self.client.post('/products/case/1/delete/', {
+            'category': 'case',
+            'id': 1,
+        }, follow=True)
         cases = Case.objects.all()
         self.assertQuerysetEqual(cases, [])
 

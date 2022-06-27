@@ -9,7 +9,7 @@ class ProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Override init method to set placeholders, 
+        Override init method to set placeholders,
         classes and set autofocus to first field
         """
         super().__init__(*args, **kwargs)
@@ -30,5 +30,4 @@ class ProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = '' # Add style to fields
             self.fields[field].label = False

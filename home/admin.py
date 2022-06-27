@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import DealCase, DealMotherboard, DealCpu, DealGpu, DealRam, DealPsu, DealStorage
+from .models import (
+    DealCase, DealMotherboard,
+    DealCpu, DealGpu, DealRam,
+    DealPsu, DealStorage
+)
 
 
 @admin.register(DealCase)

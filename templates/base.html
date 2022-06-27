@@ -59,7 +59,7 @@
             <!-- Shop logo -->
             <div class="col-12 col-lg-2 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0">StarDesk</h2>
+                    <h1 class="logo-font text-black my-0">StarDesk</h1>
                 </a>
             </div>
             <!-- Products -->
@@ -80,9 +80,10 @@
                 <form action="{% url 'products' %}" method="GET">
                     <div class="input-group w-100">
                         <input type="text" class="form-control border border-black rounded-0" name="q"
-                            placeholder="Search products">
+                            placeholder="Search products" aria-label="Search products">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit"
+                                aria-label="Submit search form">
                                 <span class="icon">
                                     <i class="fa-solid fa-magnifying-glass text-white"></i>
                                 </span>
@@ -167,7 +168,7 @@
     {% block content %}
     {% endblock %}
     <!-- Footer -->
-    <footer class="footer mt-auto">
+    <footer class="footer mt-auto text-white">
         <div class="footer-container m-0">
             <div class="row d-flex justify-content-center text-center pt-2 mx-0">
                 <div class="col-12 col-md-2">
@@ -246,14 +247,17 @@
                     <ul class="list-unstyled m-0">
                         <li class="list-inline-item">
                             <a href="https://www.facebook.com/StarDesk-PC-Components-109400621821018" target="_blank"
-                                rel="noopener"><i class="fa-brands fa-facebook-square fa-xl"></i></a>
+                                rel="noopener" aria-label="Visit our Facebook page"><i
+                                    class="fa-brands fa-facebook-square fa-xl"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://twitter.com/" target="_blank" rel="noopener"><i
+                            <a href="https://twitter.com/" target="_blank" rel="noopener"
+                                aria-label="Visit our Facebook page"><i
                                     class="fa-brands fa-twitter-square fa-xl"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                                aria-label="Visit our Facebook page"><i
                                     class="fa-brands fa-instagram-square fa-xl"></i></a>
                         </li>
                     </ul>

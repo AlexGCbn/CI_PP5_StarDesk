@@ -40,8 +40,9 @@ class StripeWH_Handler:
             order.lineitem_storage
         ):
             try:
-                item_object = item.get()
-                products.append(item_object)
+                item_object = item.all()
+                for product in item_object:
+                    products.append(product)
             except Exception:
                 continue
         subject = render_to_string(

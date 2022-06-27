@@ -64,10 +64,10 @@
                 {% for item in product_list %}
                 <div class="row justify-content-between">
                     <div class="col-12 col-md-4">
-                        <p>{{ item.product.manufacturer }} {{ item.product.model }}</p>
+                        <p>{{ item.quantity }} x {{ item.product.manufacturer }} {{ item.product.model }}</p>
                     </div>
                     <div class="col-12 col-md-8 text-md-end">
-                        <p>{{ item.quantity }} * {{ item.lineitem_total }}€</p>
+                        <p>{{ item.lineitem_total }}€</p>
                     </div>
                 </div>
                 {% endfor %}

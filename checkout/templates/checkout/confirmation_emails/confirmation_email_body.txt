@@ -10,7 +10,7 @@ Products:
 {% for item in products %}
 ---------------------------------------------
 
-{{ item.product.manufacturer }} {{ item.product.model }} - {{ item.product.price }}€
+{{ item.quantity }}x {{ item.product.manufacturer }} {{ item.product.model }} - {{ item.lineitem_total }}€
 {% endfor %}
 ---------------------------------------------
 Total: {{ order.order_total }}€

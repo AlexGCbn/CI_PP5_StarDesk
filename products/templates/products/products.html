@@ -92,7 +92,7 @@
     {% if page_obj.has_previous %}
     <div class="col-12 col-sm-4 col-md-3 col-lg-2">
         <a class="btn btn-info" href="?page=1">&laquo; first</a>
-        <a class="btn btn-info" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        <a class="btn btn-info" href="?page={{ page_obj.previous_page_number }}" rel="prev">previous</a>
     </div>
     {% endif %}
     <div class="col-12 col-sm-4 col-md-3 col-lg-2">
@@ -102,7 +102,7 @@
     </div>
     {% if page_obj.has_next %}
     <div class="col-12 col-sm-4 col-md-3 col-lg-2">
-        <a class="btn btn-info" href="?page={{ page_obj.next_page_number }}">next</a>
+        <a class="btn btn-info" href="?page={{ page_obj.next_page_number }}" rel="next">next</a>
         <a class="btn btn-info" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
     </div>
     {% endif %}

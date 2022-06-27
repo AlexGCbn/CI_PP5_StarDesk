@@ -55,10 +55,12 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-sm btn-dark rounded-0"
+                                            <button class="decrement-qty btn rounded-0"
                                                 data-item_id="{{ item.product.category }}{{ item.item_id }}"
                                                 id="decrement-qty_{{ item.product.category }}{{ item.item_id }}">
-                                                <i class="fa-solid fa-circle-minus fa-sm"></i>
+                                                <span class="icon">
+                                                    <i class="fa-solid fa-circle-minus fa-xl"></i>
+                                                </span>
                                             </button>
                                         </div>
                                         <input type="number" class="form-control form-control-sm qty_input"
@@ -66,10 +68,12 @@
                                             data-item_id="{{ item.product.category }}{{ item.item_id }}"
                                             id="id_qty_{{ item.product.category }}{{ item.item_id }}">
                                         <div class="input-group-append">
-                                            <button class="increment-qty btn btn-sm btn-dark rounded-0"
+                                            <button class="increment-qty btn rounded-0"
                                                 data-item_id="{{ item.product.category }}{{ item.item_id }}"
                                                 id="increment-qty_{{ item.product.category }}{{ item.item_id }}">
-                                                <i class="fa-solid fa-circle-plus fa-sm"></i>
+                                                <span class="icon">
+                                                    <i class="fa-solid fa-circle-plus fa-xl"></i>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>

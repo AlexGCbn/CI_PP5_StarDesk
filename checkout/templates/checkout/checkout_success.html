@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-2">
         <div class="col-12 col-lg-7">
             <div class="order-confirmation-container p-2 border">
                 <div class="row">
@@ -67,7 +67,7 @@
                         <p>{{ item.product.manufacturer }} {{ item.product.model }}</p>
                     </div>
                     <div class="col-12 col-md-8 text-md-end">
-                        <p>{{ item.quantity }} * {{ item.product.price }}€</p>
+                        <p>{{ item.quantity }} * {{ item.lineitem_total }}€</p>
                     </div>
                 </div>
                 {% endfor %}

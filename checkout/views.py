@@ -243,8 +243,9 @@ class CheckoutSuccessView(View):
             order.lineitem_storage
         ):
             try:
-                item_object = item.get()
-                product_list.append(item_object)
+                item_object = item.all()
+                for product in item_object:
+                    product_list.append(product)
             except Exception:
                 continue
         context = {

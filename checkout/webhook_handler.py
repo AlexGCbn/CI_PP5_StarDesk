@@ -32,7 +32,7 @@ class StripeWH_Handler:
         products = []
         for item in (
             order.lineitem_case,
-            order.lineitem_mobo,
+            order.lineitem_motherboard,
             order.lineitem_cpu,
             order.lineitem_gpu,
             order.lineitem_ram,

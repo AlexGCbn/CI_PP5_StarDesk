@@ -5,8 +5,16 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 from django_countries.fields import CountryField
-
-from products.models import Case, Motherboard, Cpu, Gpu, Ram, Psu, Storage
+from home.models import (
+    DealCase, DealMotherboard,
+    DealCpu, DealGpu, DealRam,
+    DealPsu, DealStorage
+)
+from products.models import (
+    Case, Motherboard,
+    Cpu, Gpu, Ram,
+    Psu, Storage
+)
 
 
 class Order(models.Model):
@@ -118,13 +126,6 @@ class OrderLineItem(models.Model):
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False
     )
 
-    def save(self, *args, **kwargs):
-        """
-        Update lineitem_total on save
-        """
-        self.lineitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return f'Order item {self.product.manufacturer} {self.product.model}'
 
@@ -142,6 +143,23 @@ class OrderLineCase(OrderLineItem):
         Case, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealCase.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
 
 class OrderLineMotherboard(OrderLineItem):
     """OrderLineMotherboard submodel"""
@@ -152,6 +170,23 @@ class OrderLineMotherboard(OrderLineItem):
     product = models.ForeignKey(
         Motherboard, null=False, blank=False, on_delete=models.CASCADE
     )
+
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealMotherboard.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
 
 
 class OrderLineCpu(OrderLineItem):
@@ -164,6 +199,23 @@ class OrderLineCpu(OrderLineItem):
         Cpu, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealCpu.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
 
 class OrderLineGpu(OrderLineItem):
     """OrderLineGpu submodel"""
@@ -174,6 +226,23 @@ class OrderLineGpu(OrderLineItem):
     product = models.ForeignKey(
         Gpu, null=False, blank=False, on_delete=models.CASCADE
     )
+
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealGpu.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
 
 
 class OrderLineRam(OrderLineItem):
@@ -186,6 +255,23 @@ class OrderLineRam(OrderLineItem):
         Ram, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealRam.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
 
 class OrderLinePsu(OrderLineItem):
     """OrderLinePsu submodel"""
@@ -197,6 +283,23 @@ class OrderLinePsu(OrderLineItem):
         Psu, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealPsu.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
 
 class OrderLineStorage(OrderLineItem):
     """OrderLineStorage submodel"""
@@ -207,3 +310,20 @@ class OrderLineStorage(OrderLineItem):
     product = models.ForeignKey(
         Storage, null=False, blank=False, on_delete=models.CASCADE
     )
+
+    def save(self, *args, **kwargs):
+        """
+        Update lineitem_total on save
+        """
+        deal_items = DealStorage.objects.filter(product=self.product)
+        if deal_items:
+            deal_price = self.product.price
+            for deal_item in deal_items:
+                if deal_item.get_days_remaining() > 0:
+                    deal_price = deal_item.price_new
+                else:
+                    continue
+            self.lineitem_total = deal_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)

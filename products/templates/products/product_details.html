@@ -202,7 +202,7 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
-<script type=" text/javascript">
+<script>
     $('#submitButton').click(function () {
         $('#deleteForm').submit();
     })

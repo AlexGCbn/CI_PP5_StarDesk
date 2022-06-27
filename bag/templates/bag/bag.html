@@ -50,7 +50,7 @@
                             <p class="my-0">{{ item.product.price }}</p>
                         </td>
                         <td class="py-3">
-                            <form action="" method="POST" class="form update-form">
+                            <form method="POST" class="form update-form">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <div class="input-group">
@@ -82,7 +82,7 @@
                             <div class="row">
                                 <!-- Update quantity form -->
                                 <div class="col d-flex justify-content-start">
-                                    <form class="w-50" action="" method="POST">
+                                    <form class="w-50" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="item"
                                             value="{{ item.product.category }}{{ item.item_id }}">
@@ -103,7 +103,7 @@
                                 </div>
                                 <!-- Remove item form -->
                                 <div class="col d-flex justify-content-end">
-                                    <form class="w-50" action="" method="POST">
+                                    <form class="w-50" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="item"
                                             value="{{ item.product.category }}{{ item.item_id }}">

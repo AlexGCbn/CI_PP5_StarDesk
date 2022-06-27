@@ -27,6 +27,7 @@
         <div class="col-12 col-lg-2 sorting-container text-center text-lg-start">
             <h4>Sort by:</h4>
             <ul id="sorting-list">
+                {% if category %}
                 <li class="my-2"><i class="fa-solid fa-angle-up"></i> <a
                         href="{% url 'products' %}?category={{category}}&sort=price&direction=asc">Price: Low to
                         High</a></li>
@@ -39,6 +40,20 @@
                 <li class="my-2"><i class="fa-solid fa-angle-down"></i> <a
                         href="{% url 'products' %}?category={{category}}&sort=rating&direction=desc">Rating: High to
                         Low</a></li>
+                {% else %}
+                <li class="my-2"><i class="fa-solid fa-angle-up"></i> <a
+                        href="{% url 'products' %}?sort=price&direction=asc">Price: Low to
+                        High</a></li>
+                <li class="my-2"><i class="fa-solid fa-angle-down"></i> <a
+                        href="{% url 'products' %}?sort=price&direction=desc">Price: High to
+                        Low</a></li>
+                <li class="my-2"><i class="fa-solid fa-angle-up"></i> <a
+                        href="{% url 'products' %}?sort=rating&direction=asc">Rating: Low to
+                        High</a></li>
+                <li class="my-2"><i class="fa-solid fa-angle-down"></i> <a
+                        href="{% url 'products' %}?sort=rating&direction=desc">Rating: High to
+                        Low</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="product-container col-12 col-lg-8">

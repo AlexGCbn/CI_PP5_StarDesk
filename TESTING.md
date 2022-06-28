@@ -382,16 +382,27 @@
 
 ## Wave / Accessibility
 - Accessibility was tested with [Web Accessibility Evaluation Tool](https://wave.webaim.org/)
-- All pages pass with no errors
+- There are 2 errors on the page and 3 contrast errors that were not fixed:
+    * The 2 errors are about elements that don't have a value
+    * An aria-label was added to both, but Wave seemed to ignore that code. Proof in screenshots
+    * The contrast errors were left there on purpose, as they concerned 2 asterisks which were not meant to be read and the text-muted copyright statement, which is muted on purpose
 - Wave cannot access pages that require signed in access
 - Only 3 pages were able to be accessed
 
 <details><summary>Screenshots</summary>
 
-#### Home
+#### Validation
 ![WAVE home page validation](/docs/validation/wave/home.png)
 ![WAVE product details validation](/docs/validation/wave/product_details.png)
 ![WAVE products validation](/docs/validation/wave/products.png)
+
+#### Proof
+Error 1:<br>
+![WAVE validation error 1](/docs/validation/wave_error1.png)
+![WAVE validation proof 1](/docs/validation/wave_error1_proof.png)<br>
+Error2:<br>
+![WAVE validation error 2](/docs/validation/wave_error2.png)
+![WAVE validation proof 2](/docs/validation/wave_error2_proof.png)
 
 </details>
 

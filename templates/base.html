@@ -98,7 +98,11 @@
                         <a href="#" class="text-black nav-link" id="user-options" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                <div><i class="fa-solid fa-user-large"></i></div>
+                                {% if request.user.is_authenticated %}
+                                <div class="text-success"><i class="fa-solid fa-user-large"></i></div>
+                                {% else %}
+                                <div><i class="fa-solid fa-user-large text-muted"></i></div>
+                                {% endif %}
                                 <p class="my-0">My Account</p>
                             </div>
                         </a>

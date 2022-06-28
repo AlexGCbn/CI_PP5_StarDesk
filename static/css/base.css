@@ -224,6 +224,10 @@ i {
     border-radius: 25px;
 }
 
+.text-success > i {
+    color: #198754;
+}
+
 /* Mailchimp */
 
 #mc_embed_signup {

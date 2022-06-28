@@ -537,3 +537,13 @@ Error2:<br>
 ![PEP8 views.py validation](/docs/validation/pep8/pep8_reviews_views.png)
 
 </details>
+
+## Stripe
+- For Stripe I used their webhooks system along with the code created by Code Institute for their Boutique Ado project, altered by me for my project.
+
+<details>
+
+#### webhooks image
+![Stripe webhooks image](/docs/features/proof/stripe_webhooks.png)
+
+</details>

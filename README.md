@@ -15,6 +15,7 @@ StarDesk is a computer hardware/components E-Commerce store, built as my 5th Por
     * [Strategy](#strategy)
         + [Primary Goals](#primary-goal)
     * [Structure](#structure)
+        + [E-Commerce Business Model](#business-model)
         + [Website pages](#website-pages)
         + [Code Structure](#code-structure)
         + [Database](#database)
@@ -40,6 +41,8 @@ StarDesk is a computer hardware/components E-Commerce store, built as my 5th Por
     * [Feature 12 - Product sorting](#feature-12)
     * [Feature 13 - Profile info](#feature-13)
     * [Feature 14 - Order History](#feature-14)
+    * [Feature 15 - User Sign in/up](#feature-15)
+    * [Feature 16 - Checkout](#feature-16)
 - [Technologies Used](#technologies-used)
     * [Languages](#languages)
     * [Libraries and other resources](#libraries-and-other-resources)
@@ -51,7 +54,7 @@ StarDesk is a computer hardware/components E-Commerce store, built as my 5th Por
 
 # Project Overview
 - This project is a website for the Portfolio Project 5, part of the Code Institute Diploma in Software Development (E-commerce Applications)
-- The website is deployed using Heroku at the following URL: [Hike-a-Thon](https://stardesk.herokuapp.com/)
+- The website is deployed using Heroku at the following URL: [StarDesk](https://stardesk.herokuapp.com/)
 - The GitHub repository contains all the source code, Issues, Project (kanban board) and assets. It can be found [here.](https://github.com/AlexGCbn/CI_PP5_StarDesk)
 - The website is fully responsive for all media sizes
 
@@ -76,6 +79,25 @@ The primary goals of the website users are:
 - To see their order history.
 
 ## Structure
+### E-Commerce Business Model
+StarDesk is a computer component e-commerce store. 
+Its target audience are consumers who will be buying the store products and paying with their card, through Stripe.  
+Payments are signle (final), as only products are sold. There are no options to make a subscription or other type of payment.  
+All products contain the information that a consumer might need to consider it, along with images.  
+
+The website's features are structured to provide visitors with an easy way to get from the first click to making the purchase.  
+Payments are simple, as they are implemented by Stripe.  
+Products can be found in many and easy ways.  
+Images are accurate and information is descriptive.  
+There is a review system for users to share their opinions.  
+
+As a marketing strategy, a Facebook page was created for the store, which can be found [here](https://www.facebook.com/StarDesk-PC-Components-109400621821018).<br>
+![Store Facebook page](/docs/facebook-1.png)<br>
+![Store Facebook page](/docs/facebook-2.png)<br>
+
+There's also a newsletter form for users to sign up to the store's newsletter. It is located on the footer of the page.<br>
+![Newsletter form](/docs/features/newsletter.png)
+
 ### Website pages
 - The website is structured into 17 pages.
 - All pages extend the same base, so they have the same look.
@@ -216,9 +238,9 @@ Ubuntu for the website's text
 #### User stories covered:
 1, 3
 
-![Homepage image](/docs/features/pages/home_top.png.png)
-![Homepage image](/docs/features/pages/home_bottom.png.png)
-![DEals image](/docs/features/deals.png)
+![Homepage image](/docs/features/pages/home_top.png)
+![Homepage image](/docs/features/pages/home_bottom.png)
+![Deals image](/docs/features/deals.png)
 
 ### Feature 2 - Navbar
 - The navbar contains links to all products and their categories
@@ -287,6 +309,7 @@ Ubuntu for the website's text
 - Visitors can adjust the quantity and add as many products as they want to their bag (max. 99)
 - Users can review the product
 - User reviews visible on the bottom of the page
+- Admins have product controls to edit or delete the product, or to add a deal
 
 #### User stories covered:
 14
@@ -294,84 +317,84 @@ Ubuntu for the website's text
 ![Product details image](/docs/features/pages/product_details_top.png)
 ![Product details bottom image](/docs/features/pages/product_details_bottom.png)
 
-### Feature 9 - Review trip
-- Users can review trips they have registered for and are completed
-- They need to complete the form with at least some data
-- The score they provide is added to the total score average
-- They can edit the review later or delete it
+### Feature 9 - Product Admin
+- Admins have the options to edit or delete a product, or add a deal
+- They can also add a product from the User button
+- That option can be found inside the product details page
+- Deleting a product has a confirmation modal
 
 #### User stories covered:
-10
+21, 22, 23
 
-![Trip review guide image](/docs/features/new_review_1.png)
-![Trip score image](/docs/features/score_before_review.png)
-![Trip review guide image](/docs/features/new_review_2.png)
-![Trip review guide image](/docs/features/new_review_3.png)
-![Trip score image](/docs/features/score_after_review.png)
-![Trip review edit guide image](/docs/features/edit_review_1.png)
-![Trip review edit guide image](/docs/features/edit_review_2.png)
-![Trip review edit guide image](/docs/features/edit_review_3.png)
-![Trip delete review image](/docs/features/delete_review_1.png)
-![Trip delete review image](/docs/features/delete_review_2.png)
+![Add product form image](/docs/features/add_product_form_pick.png)<br>
+![Product admin image](/docs/features/product_admin.png)<br>
+![Edit product form image](/docs/features/proof/edit_product_before.png)<br>
+![Delete product image](/docs/features/proof/delete_before.png)<br>
 
-### Feature 10 - Registered trips (Dashboard)
-- Users can view all the trips they have registered for
-- Completed trips have a checkmark
-- All trip names are links to the trip details
-- If the user deregisters from one trip, it is removed
+### Feature 10 - Newsletter
+- Visitors can add their email to the page's newsletter
+- Form is visible on the website footer
 
 #### User stories covered:
-5, 9
 
-![Trip history image](/docs/features/registered_trips_1.png)
-![Trip Deregister image](/docs/features/trip_deregister.png)
-![Trip history image](/docs/features/registered_trips_2.png)
 
-### Feature 11 - Request trip
-- Users can make a trip request
-- The trip request will be added to their request history
-- The admin can approve it and they will see an 'X' for not approved (default) or a checkmark if approved
+![Newsletter image](/docs/features/newsletter.png)
+
+### Feature 11 - Search Bar
+- Visitors can search for specific products
+- Search bar always visible on the navbar (or button as mobile)
 
 #### User stories covered:
-11
+2
 
-![Trip request image](/docs/features/request_1.png)
-![Trip request image](/docs/features/request_2.png)
+![Search bar image](/docs/features/search_bar.png)
 
-### Feature 12 - Admin panel Request page
-- Admin can see trip requests
-- They have the option to approve any they want
-
-#### User stories covered:
-14
-
-![Admin trip request image](/docs/features/admin_approve_request_1.png)
-![Admin trip request image](/docs/features/admin_approve_request_2.png)
-![Admin trip request image](/docs/features/admin_approve_request_3.png)
-![Admin trip request image](/docs/features/admin_approve_request_4.png)
-
-### Feature 13 - Admin panel Trips page
-- Admin can see trip objects and add new ones
-- They need to add necessary data to trips
-- They can choose which users to pre-populate 'registered_users' with
+### Feature 12 - Product Sorting
+- On the products page, visitors can sort by price and rating
+- There are controls for both descending and ascending
 
 #### User stories covered:
-13, 15
+2
 
-![Admin new trip image](/docs/features/admin_add_trip_1.png)
-![Admin new trip image](/docs/features/admin_add_trip_2.png)
-![Admin new trip image](/docs/features/admin_add_trip_3.png)
-![Admin new trip image](/docs/features/admin_add_trip_4.png)
-![Admin new trip image](/docs/features/admin_add_trip_5.png)
+![Product sorting menu image](/docs/features/sorting.png)
 
-### Feature 14 - Footer
-- Footer contains basic contact information
-- Is always located at the bottom of the page and does not overlap with content
+### Feature 13 - Profile Info
+- Registered users can add their profile information so they can do faster checkouts
+- Profile information is auto-completed on checkout
+- Users can opt to save the information from checkout 
 
 #### User stories covered:
-4
+18, 20
 
-![Footer image](/docs/features/footer.png)
+![Profile information image](/docs/features/profile_info.png)
+
+### Feature 14 - Order History
+- Registered users can view their order history on their profile page
+- They can click on an order number to view that order success page
+
+#### User stories covered:
+19
+
+![Order history image](/docs/features/order_history.png)
+
+### Feature 15 - User Sign in/up
+- Visitors can sign in or sign up as users
+- Doing so provides access to profile and ratings
+
+#### User stories covered:
+7
+
+![Sign in image](/docs/features/pages/sign_in.png)
+![Sign up image](/docs/features/pages/sign_up.png)
+
+### Feature 16 - Checkout
+- Visitors can complete their order either as signed in or guests
+- If signed in, any profile information will be used to autocomplete form
+
+#### User stories covered:
+10, 12
+
+![Checkout page image](/docs/features/pages/checkout.png)
 
 # Technologies used
 ## Languages
@@ -383,9 +406,9 @@ The languages used are:
 
 ## Libraries and other resources
 The project is based on Django, but contains the following resources, too:
+- Amazon Web Services (S3)
 - Bootstrap 5
 - PostgreSQL
-- Balsamiq
 - Coverage
 - HTML Markup Validation
 - CSS Validation Service
@@ -406,16 +429,21 @@ The project uses Cloudinary for static files hosting and it is needed for deploy
 ## Local Deployment
 You can clone this repository and run it locally with the following steps:
 1. Login to GitHub (https://wwww.github.com)
-2. Select the repository AlexGCbn/CI_PP4_Hike-a-thon
-3. Click the Code button and copy the HTTPS url, for example: https://github.com/AlexGCbn/CI_PP4_Hike-a-thon.git
+2. Select the repository AlexGCbn/StarDesk
+3. Click the Code button and copy the HTTPS url, for example: https://github.com/AlexGCbn/CI_PP5_StarDesk.git
 4. In your IDE, open a terminal and run the git clone command, for example:
-    ```git clone https://github.com/AlexGCbn/CI_PP4_Hike-a-thon.git```
+    ```git clone https://github.com/AlexGCbn/CI_PP5_StarDesk.git```
 5. The repository will now be cloned in your workspace
 6. Create an env.py file(This file should be included in .gitignore, so it will not be commited) in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
 <code>import os</code>
 <br><code>os.environ['SECRET_KEY'] = 'ADDED_BY_YOU'</code>
 <br><code>os.environ['DATABASE_URL'] = 'ADDED_BY_YOU'</code>
-<br><code>os.environ['CLOUDINARY_URL'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['STRIPE_PUBLIC_KEY'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['STRIPE_SECRET_KEY'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['STRIPE_WH_SECRET'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['DEVELOPMENT'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['EMAIL_HOST_PASS'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['EMAIL_HOST_USER'] = 'ADDED_BY_YOU'</code>
 <br>
 
 7. Install the relevant packages as per the requirements.txt file
@@ -431,14 +459,14 @@ You can clone this repository and run it locally with the following steps:
 ## Heroku
 This project can be deployed to Heroku with the following steps:
 1. Create an account on [Heroku](https://www.heroku.com/)
-2. Create an app, give it a name for example hike-a-thon, and select a region
+2. Create an app, give it a name for example stardesk, and select a region
 3. Under resources search for postgres, and add a Postgres database to the app
 4. Note the DATABASE_URL, this needs to be set as an environment variable in Heroku and your local environment variables
-5. Create a Procfile with the text: web: gunicorn hike_a_thon.wsgi
+5. Create a Procfile with the text: web: gunicorn stardesk.wsgi
 6. Make sure you add your environment variables (env.py) to Heroku's Config Vars
 7. In the settings.py ensure the connection is to the Heroku postgres database
 8. Ensure debug is set to false in the settings.py file
-9. Add 'localhost/127.0.0.1', and 'hike-a-thon.herokuapp.com' to the ALLOWED_HOSTS variable in settings.py
+9. Add 'localhost/127.0.0.1', and 'stardesk.herokuapp.com' to the ALLOWED_HOSTS variable in settings.py
 10. Run "python3 manage.py showmigrations" to check the status of the migrations
 11. Run "python3 manage.py migrate" to migrate the database
 12. Run "python3 manage.py createsuperuser" to create a super/admin user
@@ -446,5 +474,7 @@ This project can be deployed to Heroku with the following steps:
 14. Click deploy to deploy your application to Heroku for the first time
 
 # Credits
-The app was created by relying on Code Institute's Django Blog walkthrough app, so a big thanks for that! 
-<br>I would also like to thank my mentor, Mo Shami, for his continued support and encouragement through my course! 
+The app was created by relying on Code Institute's Boutique Ado walkthrough app, so a big thanks for that! A lot of the code is taken from there.
+The product images and information were all taken from Amazon.
+
+<br>A big thank you to my mentor, Mo Shami, for always being positive and encouraging me to do better! He has been a wonderful mentor that provided great guidance throughout my course.

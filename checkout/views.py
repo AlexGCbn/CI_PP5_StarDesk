@@ -193,7 +193,6 @@ class CheckoutView(View):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            # request.session['save_info'] = 'save-info' in request.POST
             if 'save-info' in request.POST and request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
                 save_data = {

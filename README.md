@@ -249,7 +249,7 @@ Ubuntu for the website's text
 - Also contains search bar feature, user controls and bag button
 
 #### User stories covered:
-2, 5, 8, 15
+2, 5, 8
 
 ![Navbar image](/docs/features/products_menu_1.png)
 
@@ -407,6 +407,7 @@ The languages used are:
 ## Libraries and other resources
 The project is based on Django, but contains the following resources, too:
 - Amazon Web Services (S3)
+- Stripe
 - Bootstrap 5
 - PostgreSQL
 - Coverage
